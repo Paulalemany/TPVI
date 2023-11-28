@@ -27,7 +27,7 @@ public:
 
 	void Update() override;
 
-	void Save() const override;
+	void save(std::ostream& out) const override;
 
 	//Define la dirección del mov que deben seguir los aliens
 	int GetDirection() { return dir; }

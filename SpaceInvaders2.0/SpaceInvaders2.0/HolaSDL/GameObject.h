@@ -21,7 +21,7 @@ public:
 	virtual void Update() = 0;
 
 	//Poner el ostream& cuando sepa hacerlo
-	virtual void Save() const = 0;
+	virtual void save(std::ostream& out) const = 0;
 
 	//Destructora virtual
 	virtual ~GameObject() = default;

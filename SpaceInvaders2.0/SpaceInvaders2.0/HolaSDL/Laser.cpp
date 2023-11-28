@@ -38,7 +38,7 @@ void Laser::Update()
 
 }
 
-void Laser::Save() const
+void Laser::save(std::ostream& out) const
 {
 
 }

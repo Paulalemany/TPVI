@@ -45,10 +45,9 @@ void Ufo::Update()
 	
 }
 
-void Ufo::Save() const
+void Ufo::save(std::ostream& out) const
 {
-	//Guarda el estado del contador
-	//Guarda el estado del bicho
+
 }
 
 bool Ufo::Hit(const SDL_Rect* r, bool o)

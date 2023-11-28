@@ -37,7 +37,7 @@ public:
 
 	virtual void Update() override;
 	
-	void Save() const override;
+	void save(std::ostream& out) const override;
 
 	bool Hit(const SDL_Rect* r, bool o) override;
 

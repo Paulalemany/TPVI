@@ -4,7 +4,7 @@ void Mothership::Render() const { }
 
 void Mothership::Update() { }
 
-void Mothership::Save() const
+void Mothership::save(std::ostream& out) const
 {
 
 }

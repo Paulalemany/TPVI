@@ -12,7 +12,6 @@ void Alien::Render () const
 //Mueve al alien y comprueba si sigue vivo
 void Alien::Update()
 {
-
 	//Si toca moverse se mueven
 	if (mother->GetShouldMove()) {
 		//Para que solo cambie de frame cuando se mueve el alien
@@ -48,9 +47,9 @@ void Alien::Update()
 }
 
 //Guarda la posición del alien y su tipo
-void Alien::Save() const
+void Alien::save(std::ostream& out) const
 {
-	//TODO
+
 }
 
 //Controla la colision

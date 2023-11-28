@@ -26,8 +26,9 @@ void Cannon::Update()
 
 }
 
-void Cannon::Save() const
+void Cannon::save(std::ostream& out) const
 {
+
 }
 
 //Si el disparo es de un alien y colisionan

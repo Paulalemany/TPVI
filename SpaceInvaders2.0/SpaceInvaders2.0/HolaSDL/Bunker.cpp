@@ -15,7 +15,8 @@ void Bunker::Update()
 	}
 }
 
-void Bunker::Save() const
+void Bunker::save(std::ostream& out) const
 {
+
 }
 

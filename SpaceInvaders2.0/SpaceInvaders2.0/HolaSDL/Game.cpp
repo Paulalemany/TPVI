@@ -200,7 +200,7 @@ void Game::Mapas()
 			//También contamos la puntuación
 			if (elem == puntos) {
 				//Guardamos los puntos actuales
-
+				Mapa >> ScorePlayer;
 			}
 			objects.pop_back();
 		}
