@@ -4,21 +4,14 @@
 //Renderiza el alien
 void Alien::Render () const
 {
-	if (vida != 0) {
-		//Renderiza el frame que toque
-		texture->renderFrame(rect, indice, frame % 2);
-	}
+	//Renderiza el frame que toque
+	texture->renderFrame(rect, indice, frame % 2);
 	
 }
 
 //Mueve al alien y comprueba si sigue vivo
 void Alien::Update()
 {
-	//Si el alien muere avisamos al motherShip y al game
-	if (vida == 0) { 
-		mother->AlienDied();
-		game->hasDied(it);
-	}
 
 	//Si toca moverse se mueven
 	if (mother->GetShouldMove()) {
@@ -67,6 +60,9 @@ bool Alien::Hit(const SDL_Rect* r, bool o)
 	if (!o && SDL_HasIntersection(r, GetRect()))
 	{ 
 		vida--;
+		mother->AlienDied();
+		game->SetScore(AlienScore - 10 * indice);
+		game->hasDied(it);
 		return true;
 	}
 	return false;

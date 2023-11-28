@@ -12,6 +12,8 @@ protected:
 	bool bajado = false;			//Comprueba si los aliens han bajado de fila
 	double speed = 20;				//Velocidad a la que se mueve el alien
 
+	int AlienScore = 30;			//Puntos que se suman cuando se mata un alien
+
 public:
 	//Constructora vacía
 	Alien() : SceneObject() {

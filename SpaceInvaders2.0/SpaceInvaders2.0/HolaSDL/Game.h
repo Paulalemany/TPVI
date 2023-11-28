@@ -38,11 +38,12 @@ private:
 
 	string mapa = "..\\mapas\\original.txt";			//Ruta del mapa a utilizar
 	bool gameOver = false;								//booleano fin del juego
-	enum textures {Fondo, Nave, Bunkers, Aliens, UFO};		//Enum de texturas
+	int ScorePlayer = 0;
+
+	enum textures {Fondo, Nave, Bunkers, Aliens, UFO};	//Enum de texturas
 	enum elem {cannon, alien, shooterAlien, mother,		//Enum de los elementos
 		bunker, ufo, laser, puntos};				
 	
-	int alienCount = 0;									//Número de aliens
 	array <Texture*, NUM_TEXTURES> texturas;			//Array de texturas
 	Mothership* mothership = new Mothership(this);		//Puntero al mothership
 	list<SceneObject*> objects;							//Lista de objetos del juego
@@ -61,6 +62,8 @@ public:
 		void Update();
 	
 		bool GameOver() { return gameOver; }
+
+		void SetScore(int s);
 
 #pragma region Constructora
 		//Constructora

@@ -37,11 +37,6 @@ void Game::Render()
 	//Ponemos el fondo...
 	texturas[Fondo]->render();
 
-	//Recorrido con iterador
-	/*for (list<SceneObject*>::iterator i = objects.begin(); i != objects.end(); i++) {
-		(*i)->Render();
-	}*/
-
 	for (auto i : objects) {
 		i -> Render();
 	}
@@ -67,6 +62,15 @@ void Game::Update()
 		gameOver = mothership->HaveLanded();
 	}
 
+}
+
+void Game::SetScore(int s)
+{
+	//Sumamos a la puntuación actual los puntos que se consigan
+	ScorePlayer += s;
+
+	//Hacemos que escriban los puntos en consola
+	cout << "Score: " << ScorePlayer << endl;
 }
 
 #pragma region Constructora
@@ -133,7 +137,7 @@ void Game::Mapas()
 	 posX, posY,			//Indica la posicion en la que se encuentra
 		indice,				//Tipo de alien a crear
 		aux;
-	int frame = 0;
+	int frame = 0;			//Podemos usarlo para pasarle el número de aliens al mothership
 	list<SceneObject*>::iterator ite = objects.begin();	//Iterador de la lista
 	SceneObject* o;			//Objeto de juego que vamos a crear
 
@@ -170,7 +174,6 @@ void Game::Mapas()
 				o = new Alien(this, pos, texturas[Aliens], mothership, 1, indice, frame);
 			}
 			frame++;
-			alienCount++;
 		}
 		else if (elem == ufo) {
 			//Usamos indice para guardar el estado
@@ -214,7 +217,7 @@ void Game::Mapas()
 		Mapa.close();
 
 		//Ponemos el número de aliens en el mothership
-		mothership->SetAlienCount(alienCount);
+		mothership->SetAlienCount(frame);
 
 
 	//catch (...)

@@ -1,14 +1,9 @@
 #include "Ufo.h"
+#include "Game.h"
 
 void Ufo::Render() const
 {
-	//Se puede hacer que se renderice solo si es visible para que no gaste tanto
-	if (estado == visible) {
-		texture->renderFrame(rect, texture->getNumRows() - 1, texture->getNumColumns() - 2);
-	}
-	//else if (estado == destruido) {
-	//	//Animación de destruirse
-	//}
+	texture->renderFrame(rect, texture->getNumRows() - 1, texture->getNumColumns() - estado);
 	
 }
 
@@ -39,8 +34,14 @@ void Ufo::Update()
 			rect.y = pos.LeerPosY();
 		}
 	}
+	else {
+		//Pasamos el estado a oculto
+		estado = oculto;
 
-	//Investigar como hacer lo de la animación si hay que hacer un contador o algos
+		//Actualizamos el cooldown
+		cont = getRandomRange(minCoolDown, maxCoolDown);
+		pos = Vector2D<double>(800, 10);
+	}
 	
 }
 
@@ -55,7 +56,8 @@ bool Ufo::Hit(const SDL_Rect* r, bool o)
 	//Si le golpean pasamos el estado pasa a destruido y hacemos la animación
 	if (!o && SDL_HasIntersection(r, GetRect())) {
 		estado = destruido;
-		return true;
+		game->SetScore(UFOScore);
+     		return true;
 	}
 	return false;
 }

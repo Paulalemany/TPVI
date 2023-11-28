@@ -5,13 +5,16 @@
 class Ufo : public SceneObject
 {
 private:
-	enum state {oculto, visible, destruido};
+	enum state {oculto, destruido, visible};
 	int estado = oculto;			//Estado del ovni
+	
 	std::mt19937_64 random;			//Generador de randoms
-	int minCoolDown = 250, maxCoolDown = 750;
+	int minCoolDown = 250, 
+		maxCoolDown = 750;
 
 	int cont = 0;					//Contador del tiempo en oculto
 	int speed = 5;
+	int UFOScore = 100;				//Puntos que se consiguen cuando le das al ufo
 
 public:
 	//Constructora vacia
@@ -35,5 +38,6 @@ public:
 	bool Hit(const SDL_Rect* r, bool o) override;
 
 	int getRandomRange(int min, int max);
+
 };
 
