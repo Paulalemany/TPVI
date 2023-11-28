@@ -43,6 +43,5 @@ private:
 	
 		void HandleEvent(SDL_Event evento);
 	
-		int LeerPosX();
 };
 

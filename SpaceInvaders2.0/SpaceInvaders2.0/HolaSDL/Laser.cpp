@@ -40,7 +40,9 @@ void Laser::Update()
 
 void Laser::save(std::ostream& out) const
 {
-
+	out << "6 ";
+	SceneObject::save(out);
+	out << " " << color << endl;
 }
 
 bool Laser::Hit(const SDL_Rect* r, bool o)

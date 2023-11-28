@@ -49,6 +49,8 @@ public:
 	//Poner el virtual cuando vaya a usarlo en alguna clase
 	virtual bool Hit(const SDL_Rect* r, bool o);
 
+	void save(std::ostream& out) const override;
+
 	//Getters para las coordenadas
 	int LeerPosX() { return pos.LeerPosX(); }
 

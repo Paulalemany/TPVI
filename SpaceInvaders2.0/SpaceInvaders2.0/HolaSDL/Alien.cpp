@@ -6,7 +6,6 @@ void Alien::Render () const
 {
 	//Renderiza el frame que toque
 	texture->renderFrame(rect, indice, frame % 2);
-	
 }
 
 //Mueve al alien y comprueba si sigue vivo
@@ -42,6 +41,7 @@ void Alien::Update()
 		//Actualizamos  la posición de la textura
 		rect.x = pos.LeerPosX();
 		rect.y = pos.LeerPosY();
+
 	}
 
 }
@@ -49,7 +49,9 @@ void Alien::Update()
 //Guarda la posición del alien y su tipo
 void Alien::save(std::ostream& out) const
 {
-
+	out << "1 ";
+	SceneObject::save(out);
+	out << " " << indice << endl;;
 }
 
 //Controla la colision

@@ -24,6 +24,8 @@ private:
 	
 		void Update() override;
 
+		void save(std::ostream& out) const;
+
 		int getRandomRange(int min, int max);
 };
 

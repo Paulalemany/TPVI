@@ -37,6 +37,8 @@ private:
 	int winHeight = 600;
 
 	string mapa = "..\\mapas\\original.txt";			//Ruta del mapa a utilizar
+	string guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
+	string savedCode = " ";								//Código de la partida guardada
 	bool gameOver = false;								//booleano fin del juego
 	int ScorePlayer = 0;
 
@@ -49,8 +51,6 @@ private:
 	list<SceneObject*> objects;							//Lista de objetos del juego
 	list<list<SceneObject*>::iterator> objectToErase;	//Lista de objetos a eliminar
 	
-	//Input
-	SDL_Event evento;
 
 public:
 
@@ -61,8 +61,6 @@ public:
 	
 		void Update();
 	
-		bool GameOver() { return gameOver; }
-
 		void SetScore(int s);
 
 #pragma region Constructora
@@ -74,15 +72,17 @@ public:
 #pragma endregion
 	
 #pragma region metodos de inicializacion
-	void Mapas();
+	void Mapas(string file);
 
 	void Texturas();
 
 	void Ejemplo();
 
-	int GetWinWidth() { return winWidth; }
+	void IncorporarLista(SceneObject* o, list<SceneObject*>::iterator ite);
 
-	int GetWinHeight() { return winHeight; }
+	void StartMenu();
+
+	void Save(const string& saveFileName) const;
 
 #pragma endregion
 
@@ -97,5 +97,11 @@ public:
 
 	void hasDied(list<SceneObject*>::iterator& ite);
 #pragma endregion
+
+	bool GameOver() { return gameOver; }
+
+	int GetWinWidth() { return winWidth; }
+
+	int GetWinHeight() { return winHeight; }
 };
 

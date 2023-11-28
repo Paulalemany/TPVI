@@ -95,11 +95,13 @@ Game::Game() {
 		gameOver = true;
 	}
 	if (!gameOver) {
+
+		//Hay que cambiar esto para adaptar el menú
 		//Cargamos todo el estado inicial del juego
 		Texturas();
 		//Cambiamos a gameOver si no se han encontrado las texturas
 		if (!gameOver) {
-			Mapas();
+			StartMenu();
 			Render();
 		}
 	}
@@ -131,19 +133,20 @@ Game::~Game()
 
 #pragma region Metodos de inicializacion
 
-void Game::Mapas()
+void Game::Mapas(string file)
 {
 	int elem,				//Indica que vamos a crear
-	 posX, posY,			//Indica la posicion en la que se encuentra
+		posX, posY,			//Indica la posicion en la que se encuentra
 		indice,				//Tipo de alien a crear
 		aux;
 	int frame = 0;			//Podemos usarlo para pasarle el número de aliens al mothership
 	list<SceneObject*>::iterator ite = objects.begin();	//Iterador de la lista
-	SceneObject* o;			//Objeto de juego que vamos a crear
+	SceneObject* o = nullptr;			//Objeto de juego que vamos a crear
+
 
 	//Leemos el archivo del mapa
 	ifstream Mapa;
-	Mapa.open(mapa); 
+	Mapa.open(file);
 
 	//Si no encuentra el archivo lanzamos una excepción
 	if (!Mapa.is_open()) {
@@ -157,18 +160,17 @@ void Game::Mapas()
 		Mapa >> posY;
 		Point2D<double> pos(posX, posY);
 
-		//Cuando podamos rellenar con los parámetros
 		if (elem == bunker) {
 			//para leer las vidas
 			Mapa >> aux;
 			o = new Bunker(this, pos, texturas[Bunkers], aux);
 		}
-		else if (elem == alien || elem == shooterAlien) {	
+		else if (elem == alien || elem == shooterAlien) {
 			Mapa >> indice;
 			if (elem == shooterAlien) {
 				//Lo utilizamos para el coolDown
 				Mapa >> elem;
-				o = new ShooterAlien(this, pos, texturas[Aliens], mothership, 1, indice, frame, elem); 
+				o = new ShooterAlien(this, pos, texturas[Aliens], mothership, 1, indice, frame, elem);
 			}
 			else {
 				o = new Alien(this, pos, texturas[Aliens], mothership, 1, indice, frame);
@@ -205,14 +207,8 @@ void Game::Mapas()
 			objects.pop_back();
 		}
 
-		objects.push_back(o);
-		ite = objects.end();
-		ite--;
-		o->setListIterator(ite);
-			
-			/*for (int i = 0; objects.size(); i++) {
-				std::cout << objects
-			}*/
+		IncorporarLista(o, ite);
+
 	}
 		Mapa.close();
 
@@ -323,18 +319,108 @@ void Game::Ejemplo()
 	//}
 
 }
+
+void Game::IncorporarLista(SceneObject* o, list<SceneObject*>::iterator ite)
+{
+	//Añadimos el objeto a la lista de objetos
+	objects.push_back(o);
+
+	//Le pasamos al objeto el iterador
+	ite = objects.end();
+	ite--;
+	o->setListIterator(ite);
+}
+
+void Game::StartMenu()
+{
+	string _mapa;	//Nombre del archivo a abrir
+	string num;		//Código del archivo
+	//Frase cuando inicias el juego
+	cout << "Desea cargar una partida guardada?: [y] Si, [n] No:" << endl;
+	
+	//elección del jugador
+	char c;
+	cin >> c;
+
+	//Cargamos partida
+	if (c == 'y') {
+		cout << "Ingrese el codigo de la partida" << endl;
+		cin >> num;
+		//Si no se encuentra el archivo lanzar una excepción
+		_mapa = guardadoRoot + "saved" + num + ".txt";
+	}
+	else if (c == 'n') { _mapa = mapa; }
+
+	Mapas(_mapa);
+
+}
+
+void Game::Save(const string& saveFileName) const
+{
+	//Creamos un archivo donde vayamos a guardar los datos
+
+	ofstream save(guardadoRoot + saveFileName);
+
+	//Si no encuentra el archivo lanzar una excepción
+
+	//Guardamos los diferentes datos en el archivo
+	for (const auto i : objects) {
+		i->save(save);
+	}
+
+	//Guardamos los puntos
+	save << "7 " << ScorePlayer << endl;
+
+	save.close();
+
+		/*if (out.fail())
+			throw "Could not find the specified save file"s;*/
+}
+
 #pragma endregion
 
 #pragma region Input
+
 void Game::HandleEvents()
 {
+	SDL_Event evento;
 	list<SceneObject*>::iterator ite = objects.begin();
-	//Si se pulsa alguna tecla se llama al input del cañón
-	if (SDL_PollEvent(&evento)) {
-		//Colocamos el iterador en el primer elemento ya que este siempre va a ser el cañón
-		//Comprobamos que efectivamente el objeto del iterador sea un cannon y si es así hacemos el método
-		dynamic_cast<Cannon*>(*ite)->HandleEvent(evento);
+
+	//Mientras exista el evento y estemos jugando
+	while (SDL_PollEvent(&evento) && !gameOver) {
+
+		//Para no escribir todo el tiempo lo mismo
+		SDL_Keycode key = evento.key.keysym.sym;
+
+		//Para poder cerrar la propia ventana SDL
+		if (evento.type == SDL_QUIT) gameOver = true;
+
+		//Para cargar y guardar partida
+		else if (evento.type == SDL_KEYDOWN && (key == SDLK_s || key == SDLK_l)) {
+			//Diferenciamos el guardar y cargar
+			if (SDLK_s == key) {
+
+				cout << "Ingrese el numero de la partida: " << endl;
+
+				//No comprueba si es un número el dato ingr
+				string k;
+				cin >> k;
+				string fileName = "saved" + k + ".txt";
+				Save(fileName);
+
+
+			}
+			else if (key == SDLK_l) {
+
+			}
+		}
+		else {
+			//Colocamos el iterador en el primer elemento ya que este siempre va a ser el cañón
+			//Comprobamos que efectivamente el objeto del iterador sea un cannon y si es así hacemos el método
+			dynamic_cast<Cannon*>(*ite)->HandleEvent(evento);
+		}
 	}
+
 
 }
 
@@ -345,12 +431,7 @@ void Game::FireLaser(Point2D<double> p, bool origen)
 	//Creamos un nuevo láser
 	SceneObject* l = new Laser(this, p, nullptr, 1, renderer, origen);
 
-	//Lo añadimos a la lista de objetos
-	objects.push_back(l);
-	//Para colocarlo al final de la lista
-	ite = objects.end();
-	ite--;
-	l->setListIterator(ite);
+	IncorporarLista(l, ite);
 	
 }
 

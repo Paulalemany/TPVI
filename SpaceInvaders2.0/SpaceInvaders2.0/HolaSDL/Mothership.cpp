@@ -6,7 +6,9 @@ void Mothership::Update() { }
 
 void Mothership::save(std::ostream& out) const
 {
-
+	out << "3 ";
+	out << " " << dir << " " << level << std::endl;
+	//No se a que se refiere con "espera"
 }
 
 void Mothership::ShouldMove()

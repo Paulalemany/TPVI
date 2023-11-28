@@ -34,7 +34,7 @@ public:
 	}
 
 	void Render() const override;
-
+	
 	virtual void Update() override;
 	
 	void save(std::ostream& out) const override;

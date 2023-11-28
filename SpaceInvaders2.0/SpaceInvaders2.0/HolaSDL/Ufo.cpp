@@ -47,7 +47,9 @@ void Ufo::Update()
 
 void Ufo::save(std::ostream& out) const
 {
-
+	out << "5 ";
+	SceneObject::save(out);
+	out << " " << estado << " " << cont << endl;
 }
 
 bool Ufo::Hit(const SDL_Rect* r, bool o)

@@ -28,7 +28,9 @@ void Cannon::Update()
 
 void Cannon::save(std::ostream& out) const
 {
-
+	out << "0 ";
+	SceneObject::save(out);
+	out << " " << vida << " " << cooldown << endl;
 }
 
 //Si el disparo es de un alien y colisionan
@@ -75,5 +77,3 @@ void Cannon::HandleEvent(SDL_Event evento)
 	//Controlamos el contador para disparar
 	if (cooldown < maxCooldown) { cooldown++; }
 }
-
-int Cannon::LeerPosX() { return pos.LeerPosX(); }

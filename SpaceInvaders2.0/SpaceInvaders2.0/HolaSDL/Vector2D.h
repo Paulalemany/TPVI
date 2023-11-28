@@ -14,8 +14,8 @@ public:
 	Vector2D() { x = 0, y = 0; }
 
 	//Consulta las variables de posición
-	T LeerPosX() { return x; }
-	T LeerPosY() { return y; }
+	T LeerPosX()const { return x; }
+	T LeerPosY()const { return y; }
 
 	//Operador de asignación
 	Vector2D <T>& operator=(Vector2D<T> const& other) {

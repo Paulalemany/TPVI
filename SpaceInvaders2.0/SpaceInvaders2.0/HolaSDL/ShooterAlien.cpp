@@ -15,6 +15,13 @@ void ShooterAlien::Update()
   
 }
 
+void ShooterAlien::save(std::ostream& out) const
+{
+	out << "2 ";
+	SceneObject::save(out);
+	out << " " << indice << " " << coolDown << endl;
+}
+
 int ShooterAlien::getRandomRange(int min, int max) {
 	return std::uniform_int_distribution<int>(min, max)(random);
 }
