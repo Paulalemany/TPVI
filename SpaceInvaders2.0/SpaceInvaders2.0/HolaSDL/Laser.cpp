@@ -16,8 +16,8 @@ void Laser::Render() const
 
 void Laser::Update()
 {
-	//Los eliminamos si se salen de la pantalla
-	if (pos.LeerPosY() < 0 || pos.LeerPosY() > game->GetWinHeight()) {
+	//Los eliminamos si se salen de la pantalla o si la vida es = a 0
+	if (pos.LeerPosY() < 0 || pos.LeerPosY() > game->GetWinHeight() || vida == 0) {
 		game->hasDied(it);
 		return;
 	}

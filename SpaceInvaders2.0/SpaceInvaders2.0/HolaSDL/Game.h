@@ -37,7 +37,7 @@ private:
 	int winWidth = 800;
 	int winHeight = 600;
 
-	string mapa = "..\\mapas\\saved1.txt";			//Ruta del mapa a utilizar
+	string mapa = "..\\mapas\\original.txt";			//Ruta del mapa a utilizar
 	string guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
 	string savedCode = " ";								//Código de la partida guardada
 	bool gameOver = false;								//booleano fin del juego
@@ -49,6 +49,7 @@ private:
 	
 	array <Texture*, NUM_TEXTURES> texturas;			//Array de texturas
 	Mothership* mothership = new Mothership(this);		//Puntero al mothership
+	Cannon* canon = new Cannon();
 	list<SceneObject*> objects;							//Lista de objetos del juego
 	list<list<SceneObject*>::iterator> objectToErase;	//Lista de objetos a eliminar
 	
@@ -63,6 +64,8 @@ public:
 		void Update();
 	
 		void SetScore(int s);
+
+		void EraseLista();
 
 #pragma region Constructora
 		//Constructora

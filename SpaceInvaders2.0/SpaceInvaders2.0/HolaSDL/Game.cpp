@@ -52,10 +52,7 @@ void Game::Update()
 	for (list<SceneObject*>::iterator ite = objects.begin(); ite != objects.end(); ite++) {
 		(*ite)->Update();
 	}
-	for (auto e : objectToErase) {
-		e = objects.erase(e);
-	}
-	objectToErase.clear();
+	EraseLista();
 
 	//Comprobamos si algún alien ha llegado abajo
 	if (gameOver == false) {
@@ -71,6 +68,16 @@ void Game::SetScore(int s)
 
 	//Hacemos que escriban los puntos en consola
 	cout << "Score: " << ScorePlayer << endl;
+}
+
+void Game::EraseLista()
+{
+	for (auto e : objectToErase) {
+
+		delete (*e);
+		e = objects.erase(e);
+	}
+	objectToErase.clear();
 }
 
 #pragma region Constructora
@@ -194,7 +201,8 @@ void Game::Mapas(string file)
 			Mapa >> indice;
 			//Lo usamos para guardar el cooldown
 			Mapa >> elem;
-			o = new Cannon(this, pos, texturas[Nave], indice, elem);
+			canon = new Cannon(this, pos, texturas[Nave], indice, elem);
+			o = canon;
 		}
 		//ponemos los elementos que no se añaden a la lista
 		else {
@@ -352,6 +360,8 @@ void Game::StartMenu()
 		cout << "Ingrese el codigo de la partida" << endl;
 		cin >> num;
 		_mapa = guardadoRoot + "saved" + num + ".txt";
+		
+		EraseLista();
 	}
 	else if (c == 'n') { _mapa = mapa; }
 
@@ -423,14 +433,16 @@ void Game::HandleEvents()
 				int k;
 				cin >> k;
 
-				string fileName = "saved" + to_string(k) + ".txt";
+				string fileName = guardadoRoot + "saved" + to_string(k) + ".txt";
+				objects.clear();
+				objectToErase.clear();
 				Mapas(fileName);
 			}
 		}
 		else {
 			//Colocamos el iterador en el primer elemento ya que este siempre va a ser el cañón
 			//Comprobamos que efectivamente el objeto del iterador sea un cannon y si es así hacemos el método
-			dynamic_cast<Cannon*>(*ite)->HandleEvent(evento);
+			canon->HandleEvent(evento);
 		}
 	}
 
