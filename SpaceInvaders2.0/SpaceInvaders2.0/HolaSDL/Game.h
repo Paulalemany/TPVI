@@ -37,7 +37,7 @@ private:
 	int winWidth = 800;
 	int winHeight = 600;
 
-	string mapa = "..\\mapas\\original.txt";			//Ruta del mapa a utilizar
+	string mapa = "..\\mapas\\saved1.txt";			//Ruta del mapa a utilizar
 	string guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
 	string savedCode = " ";								//Código de la partida guardada
 	bool gameOver = false;								//booleano fin del juego

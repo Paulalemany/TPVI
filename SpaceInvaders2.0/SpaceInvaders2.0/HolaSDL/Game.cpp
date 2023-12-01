@@ -134,10 +134,12 @@ Game::~Game()
 
 void Game::Mapas(string file)
 {
+	gameOver = false;
 	int elem,				//Indica que vamos a crear
 		posX, posY,			//Indica la posicion en la que se encuentra
 		indice,				//Tipo de alien a crear
 		aux;
+	bool origen;
 	int frame = 0;			//Podemos usarlo para pasarle el número de aliens al mothership
 	list<SceneObject*>::iterator ite = objects.begin();	//Iterador de la lista
 	SceneObject* o = nullptr;			//Objeto de juego que vamos a crear
@@ -163,6 +165,10 @@ void Game::Mapas(string file)
 			//para leer las vidas
 			Mapa >> aux;
 			o = new Bunker(this, pos, texturas[Bunkers], aux);
+		}
+		else if (elem == laser) {
+			Mapa >> origen;
+			o = new Laser(this, pos, nullptr, 1, renderer, origen);
 		}
 		else if (elem == alien || elem == shooterAlien) {
 			Mapa >> indice;
@@ -396,6 +402,7 @@ void Game::HandleEvents()
 			//Diferenciamos el guardar y cargar
 			if (SDLK_s == key) {
 
+				//Guarda la partida actual
 				cout << "Ingrese el numero de la partida: " << endl;
 
 				int k;
@@ -410,6 +417,14 @@ void Game::HandleEvents()
 			}
 			else if (key == SDLK_l) {
 				//Carga una partida nueva
+				
+				cout << "Escriba el número de partida que desea cargar: " << endl;
+
+				int k;
+				cin >> k;
+
+				string fileName = "saved" + to_string(k) + ".txt";
+				Mapas(fileName);
 			}
 		}
 		else {
