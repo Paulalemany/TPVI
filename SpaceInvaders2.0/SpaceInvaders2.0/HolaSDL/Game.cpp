@@ -111,14 +111,13 @@ Game::Game() {
 
 Game::~Game()
 {
-
-	//Eliminamos los elementos de la lista de objetos
 	
 	//Borramos las texturas
 	for (int i = 0; i < texturas.size(); i++) {
 		delete texturas[i];
 	}
 	
+	//Eliminamos los elementos de la lista de objetos
 	objects.clear();
 
 	delete mothership;
@@ -346,11 +345,11 @@ void Game::StartMenu()
 	if (c == 'y') {
 		cout << "Ingrese el codigo de la partida" << endl;
 		cin >> num;
-		//Si no se encuentra el archivo lanzar una excepción
 		_mapa = guardadoRoot + "saved" + num + ".txt";
 	}
 	else if (c == 'n') { _mapa = mapa; }
 
+	//Si no se encuentra el archivo lanzar una excepción
 	Mapas(_mapa);
 
 }
@@ -358,10 +357,7 @@ void Game::StartMenu()
 void Game::Save(const string& saveFileName) const
 {
 	//Creamos un archivo donde vayamos a guardar los datos
-
 	ofstream save(guardadoRoot + saveFileName);
-
-	//Si no encuentra el archivo lanzar una excepción
 
 	//Guardamos los diferentes datos en el archivo
 	for (const auto i : objects) {
@@ -402,16 +398,18 @@ void Game::HandleEvents()
 
 				cout << "Ingrese el numero de la partida: " << endl;
 
-				//No comprueba si es un número el dato ingr
-				string k;
+				int k;
 				cin >> k;
-				string fileName = "saved" + k + ".txt";
+
+				//Ahora mismo si le pone un character distinto a un int lo guarda como 0
+				string fileName = "saved" + to_string(k) + ".txt";
 				Save(fileName);
 
+				cout << "Su partida se ha guardado con el nombre " << fileName << endl;
 
 			}
 			else if (key == SDLK_l) {
-
+				//Carga una partida nueva
 			}
 		}
 		else {
