@@ -2,8 +2,6 @@ Práctica 2: SpaceInvaders 2.0
 
 ---- OBJETIVOS ----
 
-	· Incorporar herencia
-	· Incorporrar polimorfismo
 
 ---- FUNCIONALIDADES ----
 

@@ -360,7 +360,6 @@ void Game::StartMenu()
 		cout << "Ingrese el codigo de la partida" << endl;
 		cin >> num;
 		_mapa = guardadoRoot + "saved" + num + ".txt";
-		
 		EraseLista();
 	}
 	else if (c == 'n') { _mapa = mapa; }
