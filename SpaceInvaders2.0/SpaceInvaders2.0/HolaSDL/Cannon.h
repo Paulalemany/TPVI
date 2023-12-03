@@ -5,7 +5,7 @@ class Cannon: public SceneObject
 {
 private:
 	enum dir { still, left, right};
-		int maxCooldown = 5;			//Cooldown 
+		int maxCooldown = 10;			//Cooldown 
 		int cooldown;		//Contador del cooldown
 	
 		int maxVidas;					//Vidas máximas del jugador

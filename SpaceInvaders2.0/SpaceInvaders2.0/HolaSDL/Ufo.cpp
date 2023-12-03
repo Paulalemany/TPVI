@@ -36,11 +36,13 @@ void Ufo::Update()
 	}
 	else {
 		//Pasamos el estado a oculto
-		estado = oculto;
+ 		estado = oculto;
 
 		//Actualizamos el cooldown
 		cont = getRandomRange(minCoolDown, maxCoolDown);
 		pos = Vector2D<double>(800, 10);
+		rect.x = pos.LeerPosX();
+		rect.y = pos.LeerPosY();
 	}
 	
 }
@@ -54,7 +56,7 @@ void Ufo::save(std::ostream& out) const
 
 bool Ufo::Hit(const SDL_Rect* r, bool o)
 {
-	//Si le golpean pasamos el estado pasa a destruido y hacemos la animación
+	//Si le golpean y no está destruido pasamos el estado pasa a destruido y hacemos la animación
 	if (!o && SDL_HasIntersection(r, GetRect())) {
 		estado = destruido;
 		game->SetScore(UFOScore);

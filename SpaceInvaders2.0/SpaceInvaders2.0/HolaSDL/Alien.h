@@ -46,6 +46,8 @@ public:
 
 	bool Bajado() { return bajado; }
 
+	void SetMothership(Mothership* m) { mother = m; }
+
 	
 
 };

@@ -21,7 +21,16 @@ private:
 	bool alienLanded = false;						//Indica si algún alien ha llegado a la fila del cañón
 
 public:
-	Mothership(Game* gam) : GameObject(gam) { }
+
+	Mothership(Game* gam) : GameObject(gam) {
+		dir = left;
+		level = 1;
+	}
+
+	Mothership(Game* gam, int e, double l) : GameObject(gam) {
+		dir = e;
+		level = l;
+	}
 
 	void Render() const override;
 

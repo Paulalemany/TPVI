@@ -5,7 +5,7 @@
 //Bucle principal del juego
 bool Game::Run()
 {
-	if (gameOver) return false;
+	if (gameOver || youWin) return false;
 	else {
 		while (!gameOver) {
 			//Controlamos el frameRate
@@ -47,17 +47,28 @@ void Game::Render()
 //Llama al resto de Updates
 void Game::Update()
 {
-	mothership->ShouldMove();
+	//Si el jugador no ha ganado la partida
+	if (mothership->GetAlienCount() != 0) {
 
-	for (list<SceneObject*>::iterator ite = objects.begin(); ite != objects.end(); ite++) {
-		(*ite)->Update();
-	}
-	EraseLista();
+		//Seguimos jugando
+		mothership->ShouldMove();
 
-	//Comprobamos si algún alien ha llegado abajo
-	if (gameOver == false) {
+		//Hacemos el update de todos los aliens
+		for (list<SceneObject*>::iterator ite = objects.begin(); ite != objects.end(); ite++) {
+			(*ite)->Update();
+		}
+
+		//eliminamos los elementos correspondientes
+		EraseLista();
+
+		//Comprobamos si algún alien ha llegado abajo
 		gameOver = mothership->HaveLanded();
 	}
+	else {	//Si mueren todos los aliens ganamos la partida
+		youWin = true;
+		cout << "Has ganado!!! :D ";
+	}
+	
 
 }
 
@@ -101,13 +112,13 @@ Game::Game() {
 		cerr << "No se ha podido crear la ventana SDL" << endl;
 		gameOver = true;
 	}
-	if (!gameOver) {
+	if (!gameOver || !youWin) {
 
 		//Hay que cambiar esto para adaptar el menú
 		//Cargamos todo el estado inicial del juego
 		Texturas();
 		//Cambiamos a gameOver si no se han encontrado las texturas
-		if (!gameOver) {
+		if (!gameOver || !youWin) {
 			StartMenu();
 			Render();
 		}
@@ -124,11 +135,13 @@ Game::~Game()
 		delete texturas[i];
 	}
 	
-	//Eliminamos los elementos de la lista de objetos
+	for (auto e : objects) { delete (e); }
 	objects.clear();
 
-	delete mothership;
+	for (auto e : objectToErase) { delete (*e); }
+	objectToErase.clear();
 
+	delete mothership;
 	
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
@@ -157,9 +170,10 @@ void Game::Mapas(string file)
 	Mapa.open(file);
 
 	//Si no encuentra el archivo lanzamos una excepción
-	if (!Mapa.is_open()) {
-		throw "No se ha podido encontrar el archivo"s;
+	if (Mapa.fail()) {
+		throw FileNotFoundError("No se ha podido encontrar el archivo llamado "s + file);
 	}
+
 	//Mientras no haya terminado el archivo
 	while (!Mapa.eof()) {
 		//Leemos lo que tenemos que crear
@@ -207,10 +221,12 @@ void Game::Mapas(string file)
 		//ponemos los elementos que no se añaden a la lista
 		else {
 			if (elem == mother) {
+				//Sirve para indicar la dirección del mov
 				Mapa >> elem;
+				//Sirve para indicar el nivel
 				Mapa >> indice;
 				Mapa >> aux;
-				//mothership = new Mothership(this);
+				mothership = new Mothership(this, elem, indice);
 			}
 			//También contamos la puntuación
 			if (elem == puntos) {
@@ -225,17 +241,18 @@ void Game::Mapas(string file)
 	}
 		Mapa.close();
 
-		//Ponemos el número de aliens en el mothership
-		mothership->SetAlienCount(frame);
+	//Ponemos el número de aliens en el mothership
+	mothership->SetAlienCount(frame);
 
-
-	//catch (...)
-	//{
-	//	//Si no encuentra el archivo carga un mapa predeterminado
-	//	cerr << "Cargamos escena de ejemplo" << endl;
-	//	Ejemplo();
-	//}
-	
+	//Le ponemos el mothership a los aliens
+	for (auto i : objects) {
+		Alien* a = dynamic_cast<Alien*>(i);
+		ShooterAlien* s = dynamic_cast<ShooterAlien*>(i);
+		if (a != nullptr) { a->SetMothership(mothership); }
+		else if (s != nullptr) { s->SetMothership(mothership); }
+		
+	}
+		
 }
 
 void Game::Texturas()
@@ -291,48 +308,6 @@ void Game::Texturas()
 	
 }
 
-void Game::Ejemplo()
-{
-	//Creamos el mapa de ejemplo
-	int posX;				//Indica la columna en la que se encuentra
-	int posY;				//Indica la fila en la que se encuentra
-	int indice = 0;			//Tipo de alien a crear
-
-	////Creamos dos bunkers
-	//for (int i = 1; i <= 2; i++) {
-	//	posX = texturas[2]->getFrameWidth() * 2.5 * i + 20;
-	//	posY = 400;
-	//	Point2D<int> pos(posX, posY);
-	//	Bunker* b = new Bunker(pos, texturas[2]);
-	//	bunkers.push_back(b);
-	//}
-	////Creamos 3 aliens
-	//for (int i = 1; i <= 3; i++) {
-	//	posX = texturas[3]->getFrameWidth() * 2 * i;
-	//	posY = 50;
-	//	
-	//	Point2D<double> pos(posX, posY);
-	//	Alien* a;
-	//	if (indice == 0) {	//Es un disparador
-	//		a = new ShooterAlien(pos, indice, texturas[3], this, i, getRandomRange(250, 750));
-	//	}
-	//	else {
-	//		a = new Alien(pos, indice, texturas[3], this, i);
-	//	}
-	//	aliens.push_back(a);
-	//	indice++;
-	//}
-	////Creamos una nave
-	//for (int i = 1; i <= 1; i++) {
-	//	posX = 400;
-	//	posY = 500;
-	//	Point2D<double> pos(posX, posY);
-	//	Cannon* nave = new Cannon(pos, texturas[1], this);
-	//	cannons.push_back(nave);
-	//}
-
-}
-
 void Game::IncorporarLista(SceneObject* o, list<SceneObject*>::iterator ite)
 {
 	//Añadimos el objeto a la lista de objetos
@@ -374,6 +349,10 @@ void Game::Save(const string& saveFileName) const
 	//Creamos un archivo donde vayamos a guardar los datos
 	ofstream save(guardadoRoot + saveFileName);
 
+	//si no se encuentra el archivo
+	if (save.fail())
+		throw FileNotFoundError("No se puede leer el archivo llamado"s + saveFileName);
+
 	//Guardamos los diferentes datos en el archivo
 	for (const auto i : objects) {
 		i->save(save);
@@ -384,8 +363,6 @@ void Game::Save(const string& saveFileName) const
 
 	save.close();
 
-		/*if (out.fail())
-			throw "Could not find the specified save file"s;*/
 }
 
 #pragma endregion
@@ -404,7 +381,7 @@ void Game::HandleEvents()
 		SDL_Keycode key = evento.key.keysym.sym;
 
 		//Para poder cerrar la propia ventana SDL
-		if (evento.type == SDL_QUIT) gameOver = true;
+		if (evento.type == SDL_QUIT) youWin = true;
 
 		//Para cargar y guardar partida
 		else if (evento.type == SDL_KEYDOWN && (key == SDLK_s || key == SDLK_l)) {
@@ -414,6 +391,7 @@ void Game::HandleEvents()
 				//Guarda la partida actual
 				cout << "Ingrese el numero de la partida: " << endl;
 
+				//Si se escribe algo distinto a un int, lanzar una excepción
 				int k;
 				cin >> k;
 
@@ -431,18 +409,19 @@ void Game::HandleEvents()
 
 				int k;
 				cin >> k;
-
-				string fileName = guardadoRoot + "saved" + to_string(k) + ".txt";
-				objects.clear();
-				objectToErase.clear();
-				Mapas(fileName);
+				if (isdigit(k)) {
+					string fileName = guardadoRoot + "saved" + to_string(k) + ".txt";
+					objects.clear();
+					objectToErase.clear();
+					Mapas(fileName);
+				}
+				else {
+					cout << "El caracter no es válido, se reaunuda la partida" << endl;
+				}
+				
 			}
 		}
-		else {
-			//Colocamos el iterador en el primer elemento ya que este siempre va a ser el cañón
-			//Comprobamos que efectivamente el objeto del iterador sea un cannon y si es así hacemos el método
-			canon->HandleEvent(evento);
-		}
+		else { canon->HandleEvent(evento); }
 	}
 
 

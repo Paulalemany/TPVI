@@ -19,15 +19,16 @@ void Alien::Update()
 		//Se mueven a la derecha
 		if (mother->GetDirection() == 1)
 		{
-			pos = pos + Vector2D<double>(speed, 0) * mother -> Level();
+			pos = pos + Vector2D<double>(speed, 0) * (mother -> Level() + 1);
 		}
 		else if (mother->GetDirection() == -1) { //Se mueven hacia la izquierda
-			pos = pos - Vector2D<double>(speed, 0) * mother -> Level();
+			pos = pos - Vector2D<double>(speed, 0) * (mother -> Level() + 1);
 		}
 		else {	//Se mueven hacia abajo
 			pos = pos + Vector2D<double>(0, texture -> getFrameHeight());
-			//Nivel de la nave (Ahora mismo no se cuál es)
-			if (pos.LeerPosY() >= game -> GetWinHeight() - 3* margenAlien) 
+			
+			//Si llega a la fila del cannon avisa a la mothersip
+			if (pos.LeerPosY() >= game -> CannonHeight()) 
 			{
 				mother->AlienLanded();
 			}

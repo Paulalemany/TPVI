@@ -8,15 +8,19 @@
 #include "Cannon.h"
 #include "Laser.h"
 #include "Ufo.h"
-//#include "Mothership.h"
 
 //No se si habrá que quitar alguno de estos 
 //#include <iterator>
 #include <iostream>
+#include <filesystem>
 #include <array>
 #include <fstream>
 #include <list>
 #include <string>
+
+#include "FileNotFoundError.h"
+#include "SDLError.h"
+#include "FileFormatError.h" 
 
 using namespace std;
 class SceneObject;
@@ -37,21 +41,24 @@ private:
 	int winWidth = 800;
 	int winHeight = 600;
 
-	string mapa = "..\\mapas\\original.txt";			//Ruta del mapa a utilizar
-	string guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
-	string savedCode = " ";								//Código de la partida guardada
-	bool gameOver = false;								//booleano fin del juego
+	string mapa = "..\\mapas\\original.txt";					//Ruta del mapa a utilizar
+	string guardadoRoot = "..\\mapas\\";						//Ruta de partida guardada
+	string savedCode = " ";										//Código de la partida guardada
+
+	bool gameOver = false;										//booleano fin del juego
+	bool youWin = false;
 	int ScorePlayer = 0;
 
-	enum textures {Fondo, Nave, Bunkers, Aliens, UFO};	//Enum de texturas
-	enum elem {cannon, alien, shooterAlien, mother,		//Enum de los elementos
+	enum textures {Fondo, Nave, Bunkers, Aliens, UFO};			//Enum de texturas
+	enum elem {cannon, alien, shooterAlien, mother,				//Enum de los elementos
 		bunker, ufo, laser, puntos};				
 	
-	array <Texture*, NUM_TEXTURES> texturas;			//Array de texturas
 	Mothership* mothership = new Mothership(this);		//Puntero al mothership
 	Cannon* canon = new Cannon();
-	list<SceneObject*> objects;							//Lista de objetos del juego
-	list<list<SceneObject*>::iterator> objectToErase;	//Lista de objetos a eliminar
+
+	array <Texture*, NUM_TEXTURES> texturas;					//Array de texturas
+	list<SceneObject*> objects;									//Lista de objetos del juego
+	list<list<SceneObject*>::iterator> objectToErase;			//Lista de objetos a eliminar
 	
 
 public:
@@ -80,8 +87,6 @@ public:
 
 	void Texturas();
 
-	void Ejemplo();
-
 	void IncorporarLista(SceneObject* o, list<SceneObject*>::iterator ite);
 
 	void StartMenu();
@@ -107,5 +112,7 @@ public:
 	int GetWinWidth() { return winWidth; }
 
 	int GetWinHeight() { return winHeight; }
+
+	int CannonHeight() { return canon->LeerPosX(); }
 };
 

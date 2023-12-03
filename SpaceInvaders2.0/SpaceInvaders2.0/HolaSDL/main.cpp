@@ -5,12 +5,33 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	//Creamos el juego
-	Game game;
+	try {
+		//Creamos el juego
+		Game game;
 
-	//Bucle principal del juego
-	game.Run();
+		//Bucle principal del juego
+		game.Run();
+		SDL_Delay(500);
+	}
+	catch (FileNotFoundError& fileError)
+	{
+		std::cout << fileError.what() << std::endl;
+	}
+	catch (SDLError& SDLError)
+	{
+		std::cout << SDLError.what() << std::endl;
+	}
+	catch (FileFormatError& fileError)
+	{
+		std::cout << fileError.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "ERROR: Excepcion no definida." << std::endl;
+	}
 
-	SDL_Delay(500);
+	
 	return 0;
 }
+
+
