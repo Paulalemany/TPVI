@@ -1,0 +1,87 @@
+Práctica 2: SpaceInvaders 2.0
+
+---- FUNCIONALIDADES ----
+
+	· Si no se pone la K se cancela la operación
+	
+---- FALLOS ----
+	· Sale un error a veces (Parece cosa de los iteradores pero ni idea de cuando sale y porqué)
+
+---- EN PROCESO ---- 
+
+	· Hacer bien la constructora de Mothership, y para guardar
+	· Hacer que todos los aliens tengan el mismo MotherShip aunque se cree después
+	· Ganar cuando eliminas a todos los aliens
+
+			|3 = mothership, estado, nivel, espera            |
+
+JERARQUÍA DE EXCEPCIONES
+
+	· Excepciones irrecuperables:
+		- Se capturan en el "main"
+		- SDL_ShowSimpleMessageBox
+
+	· InvadersError: hereda de stdЕ::logic_error
+		- Constructor
+		- Método "what" -> logic_error
+
+	· SDL_Error: hereda de InvadersError
+		- Inicialización y uso de la SDL
+		- SDL_GetError
+
+	· FileNotFoundError: hereda de InvadersError
+		- Fichero no encontrado
+		- Nombre del fichero al darse el error
+
+	· FileFormatError: hereda de InvadersError
+		- Lectura de archivo incorrecta
+		- Nombre del archivo, número de línea y mensaje
+
+
+---- MEJORABLE ----
+
+
+· La partida termina si los aliens llegan a la fila del jugador.
+· Fila del cannon para ver si llegan los aliens
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
