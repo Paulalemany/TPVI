@@ -7,7 +7,7 @@ bool Game::Run()
 {
 	if (gameOver || youWin) return false;
 	else {
-		while (!gameOver) {
+		while (!gameOver || !youWin) {
 			//Controlamos el frameRate
 			int startLoop = SDL_GetTicks();
 			HandleEvents();
@@ -409,7 +409,7 @@ void Game::HandleEvents()
 
 				int k;
 				cin >> k;
-				if (isdigit(k)) {
+				if (k >= 0) {
 					string fileName = guardadoRoot + "saved" + to_string(k) + ".txt";
 					objects.clear();
 					objectToErase.clear();
