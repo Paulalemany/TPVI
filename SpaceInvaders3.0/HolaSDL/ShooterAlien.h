@@ -1,5 +1,7 @@
 #pragma once
-class ShooterAlien
+#include "SceneObject.h"
+
+class ShooterAlien : public SceneObject
 {
 };
 

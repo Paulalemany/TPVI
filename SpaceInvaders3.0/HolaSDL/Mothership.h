@@ -1,5 +1,7 @@
 #pragma once
-class Mothership
+#include "GameObject.h"
+
+class Mothership : public GameObject
 {
 };
 

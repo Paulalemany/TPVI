@@ -1,5 +1,7 @@
 #pragma once
-class Bunker
+#include "SceneObject.h"
+
+class Bunker : public SceneObject
 {
 };
 

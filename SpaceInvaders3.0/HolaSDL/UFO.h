@@ -1,5 +1,7 @@
 #pragma once
-class UFO
+#include "SceneObject.h"
+
+class UFO : public SceneObject
 {
 };
 

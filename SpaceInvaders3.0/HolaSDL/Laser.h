@@ -1,5 +1,7 @@
 #pragma once
-class Laser
+#include "SceneObject.h"
+
+class Laser : public SceneObject
 {
 };
 

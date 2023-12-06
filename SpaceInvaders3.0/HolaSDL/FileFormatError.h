@@ -1,5 +1,9 @@
 #pragma once
-class FileFormatError
+#include "InvadersError.h"
+
+class FileFormatError : public InvadersError
 {
+public:
+    FileFormatError(const std::string& message);
 };
 
