@@ -3,6 +3,8 @@
 
 class MainMenuState : public GameState
 {
+public:
 
+	void render() const override;
 };
 
