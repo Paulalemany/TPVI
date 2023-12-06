@@ -1,5 +1,7 @@
 #pragma once
-class Cannon
+#include "EventHandler.h"
+
+class Cannon : public EventHandler
 {
 };
 

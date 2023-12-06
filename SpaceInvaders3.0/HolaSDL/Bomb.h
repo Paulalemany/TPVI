@@ -1,5 +1,7 @@
 #pragma once
-class Bomb
+#include "SceneObject.h"
+
+class Bomb : public SceneObject
 {
 };
 

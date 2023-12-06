@@ -1,5 +1,7 @@
 #pragma once
-class SceneObject
+#include "GameObject.h"
+
+class SceneObject : public GameObject
 {
 };
 
