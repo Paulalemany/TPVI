@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 
-class Mothership : GameObject
+class Mothership : public GameObject
 {
 private:
 	enum state { left = -1, right = 1, down };		//Enumerado para los estados del juego

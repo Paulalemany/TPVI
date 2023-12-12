@@ -25,10 +25,7 @@ int main(int argc, char* argv[])
 	{
 		std::cout << fileError.what() << std::endl;
 	}
-	catch (...)
-	{
-		std::cout << "ERROR: Excepcion no definida." << std::endl;
-	}
+	
 
 	
 	return 0;

@@ -41,6 +41,7 @@ private:
 
 	string mapa = "..\\mapas\\original.txt";					//Ruta del mapa a utilizar
 	string guardadoRoot = "..\\mapas\\";						//Ruta de partida guardada
+
 	string savedCode = " ";										//Código de la partida guardada
 
 	bool gameOver = false;										//booleano fin del juego
@@ -51,7 +52,7 @@ private:
 	enum elem {cannon, alien, shooterAlien, mother,				//Enum de los elementos
 		bunker, ufo, laser, puntos};				
 	
-	Mothership* mothership = new Mothership(this);		//Puntero al mothership
+	Mothership* mothership = new Mothership(this);				//Puntero al mothership
 	Cannon* canon = new Cannon();
 
 	array <Texture*, NUM_TEXTURES> texturas;					//Array de texturas
