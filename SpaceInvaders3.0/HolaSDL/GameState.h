@@ -1,45 +1,21 @@
 #pragma once
-#include <list>
-#include <ostream>
-
-#include "EventHandler.h"
-#include "Game.h"
-#include "gameList.h"
-#include "GameObject.h"
-
+#include<string>
+#include<iostream>
 using namespace std;
-//Oyentes del evento del estado
-class addEventListener {		
 
-};
-
-//Para añadir objetos al estado concreto
-class addObject {
-
-};
-
-//Maneja los estados y los lanza a quien los quiera escuchar
 class GameState
 {
-private:
-
-	enum _gameStates {
-		_mainMenu,
-		_pauseMenu,
-		_playState
-	};
-	GameList<GameObject, true> _gameObjectsList;		// Lista de objetos de juego 
-	list<EventHandler*> _lista;							// Manejador de eventos
-	Game* game;											// Puntero al juego
-
 public:
+	//Hacemos una clase abstracta base para todos los estados del juego
+	//Funciones necesarias para todas las clases hijas de GameState
 	virtual void update() = 0;
-	virtual void render() const = 0;
-	virtual void handleEvent(const SDL_Event&) = 0;
+	virtual void render() = 0;
 
-	void save(ostream&) const;
-	void hasDied(GameList<GameObject, true>::anchor);
-	void getGame() const;
+	//Funciones de transición entre estados
+	virtual bool onEnter() = 0;
+	virtual bool onExit() = 0;
 
+	//Getter del ID del estado en el que esté
+	virtual std::string getStateID() const = 0;
 };
 

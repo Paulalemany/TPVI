@@ -1,31 +1,33 @@
 #include "GameStateMachine.h"
-using namespace std;
 
-void GameStateMachine::pushState(GameState*) const
+//No estamos comprobando si la pila está llena o vacía en ningún momento, podría dar problemas
+void GameStateMachine::pushState(GameState* _state)
 {
-	//Introduce en la pila el estado que le den
-	// No deja hacerlo porque el método es constante
-	//_pila.push(GameState*);
+	//Introduce un nuevo elemento en lo alto de la pila
+	_pilaGameStates.push(_state);
+
+	//Hacemos el onEnter del estado que entre
+	_pilaGameStates.top()->onEnter();
+}
+
+void GameStateMachine::changeState(GameState* _state)
+{
+	//Hacemos una fusión
+
+	//Eliminamos el elemento que está actualmente en la cima
+	popState();
+
+	//Añadimos el nuevo estado
+	pushState(_state);
+
 }
 
 void GameStateMachine::popState()
 {
-	//Elimina el estado que esté en la cima de la pila
-	_pila.pop();
-}
+	//Hacemos el onExit del elemento que esté en la cima
+	_pilaGameStates.top()->onExit();
 
-void GameStateMachine::replaceState(GameState*)
-{
-}
+	//Lo sacamos de la pila
+	_pilaGameStates.pop();
 
-void GameStateMachine::update()
-{
-}
-
-void GameStateMachine::render() const
-{
-}
-
-void GameStateMachine::handleEvent(const SDL_Event&)
-{
 }

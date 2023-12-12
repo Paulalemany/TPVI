@@ -1,10 +1,10 @@
 #include "texture.h"
+
 #include <SDL_image.h>
-#include "SDLError.h"
 
 using namespace std;
 
-Texture::Texture(SDL_Renderer* renderer, SDL_Texture* texture, int rows, int columns)
+Texture::Texture(SDL_Renderer* renderer, SDL_Texture* texture, size_t rows, size_t columns)
   : renderer(renderer)
   , texture(texture)
   , nrows(rows)
@@ -16,7 +16,7 @@ Texture::Texture(SDL_Renderer* renderer, SDL_Texture* texture, int rows, int col
 	frameHeight = height / nrows;
 }
 
-Texture::Texture(SDL_Renderer* renderer, const char* filename, int rows, int columns)
+Texture::Texture(SDL_Renderer* renderer, const char* filename, size_t rows, size_t columns)
   : renderer(renderer)
   , texture(nullptr)
   , nrows(rows)
@@ -25,14 +25,14 @@ Texture::Texture(SDL_Renderer* renderer, const char* filename, int rows, int col
 	SDL_Surface* surface = IMG_Load(filename);
 
 	if (surface == nullptr)
-		throw SDLError("load surface \""s + filename + '"');
+		throw "load surface \""s + filename + '"';
 
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 
 	SDL_FreeSurface(surface);
 
 	if (texture == nullptr)
-		throw SDLError("create texture");
+		throw "create texture"s;
 
 	SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
 
@@ -69,7 +69,7 @@ Texture::render(const SDL_Rect& rect,
 void
 Texture::renderFrame(const SDL_Rect& rect, int row, int col) const
 {
-	SDL_Rect origin{col * frameWidth, row * frameHeight, frameWidth, frameHeight};
+	SDL_Rect origin{ col * frameWidth, row * frameHeight, frameWidth, frameHeight };
 	SDL_RenderCopy(renderer, texture, &origin, &rect);
 }
 
@@ -81,18 +81,6 @@ Texture::renderFrame(const SDL_Rect& rect,
                      const SDL_Point* center,
                      SDL_RendererFlip flip) const
 {
-	SDL_Rect origin{col * frameWidth, row * frameHeight, frameWidth, frameHeight};
+	SDL_Rect origin{ col * frameWidth, row * frameHeight, frameWidth, frameHeight };
 	SDL_RenderCopyEx(renderer, texture, &origin, &rect, angle, center, flip);
-}
-
-void
-Texture::render(const SDL_Rect& rect, SDL_Color color) const
-{
-	// Guarda el color original para reestablecerlo después
-	SDL_Color original;
-	SDL_GetTextureColorMod(texture, &original.r, &original.g, &original.b);
-
-	SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
-	render(rect);
-	SDL_SetTextureColorMod(texture, original.r, original.g, original.b);
 }

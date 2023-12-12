@@ -1,24 +1,22 @@
 #pragma once
-#include <iostream>
-#include <stack>
-
 #include "GameState.h"
-#include "Game.h"
-
-using namespace std;
+#include <stack>
 
 class GameStateMachine
 {
-	//Creamos la pila de estados de juego
-	stack<GameState*> _pila;
+private:
 
-	//Entiendo yo que los métodos tienen que ser públicos tendrán que llamarlos los estdos o algo
+	//Usamos una pila para almacenar los estados
+	stack <GameState*> _pilaGameStates;
+
 public:
-	void pushState(GameState*) const;
-	void popState();
-	void replaceState(GameState*);
-	void update();
-	void render() const;
-	void handleEvent(const SDL_Event&);
+	//Métodos para intercambiar estados
+	void pushState(GameState* pState);				//Inserta un estado
+
+	void changeState(GameState* pState);			//cambia el estado actual
+
+	void popState();								//Elimina un estado
 };
+
+
 
