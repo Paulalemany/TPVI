@@ -87,6 +87,7 @@
     <ClInclude Include="EndState.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="gameList.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
