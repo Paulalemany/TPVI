@@ -9,13 +9,17 @@ private:
 
 public:
 
-	virtual void update();
-	virtual void render();
+	virtual void Update() override;
+	virtual void Render() override;
+	virtual void HandleEvent() override;
 
-	virtual bool onEnter();
-	virtual bool onExit();
+	virtual bool OnEnter() override;
+	virtual bool OnExit() override;
 
-	virtual std::string getStateID() const { return _playID; }
+	virtual void AddEventListener() override;
+	virtual void AddObject() override;
+
+	virtual std::string GetStateID() const { return _playID; }
 
 };
 

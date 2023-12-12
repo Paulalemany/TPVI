@@ -2,24 +2,36 @@
 
 const string PlayState::_playID = "PLAY";
 
-void PlayState::update()
+void PlayState::Update()
 {
 	// nothing for now
 }
 
-void PlayState::render()
+void PlayState::Render()
 {
 	// nothing for now
 }
 
-bool PlayState::onEnter()
+void PlayState::HandleEvent()
+{
+}
+
+bool PlayState::OnEnter()
 {
 	cout << "Entrando en PlayState" << endl;
 	return true;
 }
 
-bool PlayState::onExit()
+bool PlayState::OnExit()
 {
 	cout << "Saliendo de PlayState" << endl;
 	return true;
+}
+
+void PlayState::AddEventListener()
+{
+}
+
+void PlayState::AddObject()
+{
 }

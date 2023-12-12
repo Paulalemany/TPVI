@@ -7,7 +7,7 @@ void GameStateMachine::pushState(GameState* _state)
 	_pilaGameStates.push(_state);
 
 	//Hacemos el onEnter del estado que entre
-	_pilaGameStates.top()->onEnter();
+	_pilaGameStates.top()->OnEnter();
 }
 
 void GameStateMachine::changeState(GameState* _state)
@@ -25,7 +25,7 @@ void GameStateMachine::changeState(GameState* _state)
 void GameStateMachine::popState()
 {
 	//Hacemos el onExit del elemento que esté en la cima
-	_pilaGameStates.top()->onExit();
+	_pilaGameStates.top()->OnExit();
 
 	//Lo sacamos de la pila
 	_pilaGameStates.pop();

@@ -2,23 +2,23 @@
 
 const string EndState::_endID = "END";
 
-void EndState::update()
+void EndState::Update()
 {
 	// nothing for now
 }
 
-void EndState::render()
+void EndState::Render()
 {
 	// nothing for now
 }
 
-bool EndState::onEnter()
+bool EndState::OnEnter()
 {
 	cout << "Entrando al EndState" << endl;
 	return true;
 }
 
-bool EndState::onExit()
+bool EndState::OnExit()
 {
 	cout << "Saliendo del EndState" << endl;
 	return true;

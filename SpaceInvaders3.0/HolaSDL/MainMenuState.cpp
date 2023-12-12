@@ -3,25 +3,37 @@
 
 const string MenuState::_menuID = "MENU";
 
-void MenuState::update()
+void MenuState::Update()
 {
 	// nothing for now
 }
 
-void MenuState::render()
+void MenuState::Render()
 {
 	// nothing for now
 }
 
-bool MenuState::onEnter()
+void MenuState::HandleEvent()
+{
+}
+
+bool MenuState::OnEnter()
 {
 	cout << "Entrando al MenuState" << endl;
 	return true;
 }
 
-bool MenuState::onExit()
+bool MenuState::OnExit()
 {
 	cout << "Saliendo del MenuState" << endl;
 	return true;
+}
+
+void MenuState::AddEventListener()
+{
+}
+
+void MenuState::AddObject()
+{
 }
 

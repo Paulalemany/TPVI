@@ -4,8 +4,12 @@
 #include <list>
 
 #include "gameList.h"
+#include "EventHandler.h"
+#include "GameObject.h"
+
 using namespace std;
 
+class Game;
 class GameState
 {
 private:

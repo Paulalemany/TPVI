@@ -73,7 +73,7 @@ Game::Game()
 		Texturas();
 		//Cambiamos a gameOver si no se han encontrado las texturas
 		if (!exit) {
-			boton = new Button(texturas[]);
+			//boton = new Button(texturas[]);
 			//StartMenu();
 			//Render();
 		}

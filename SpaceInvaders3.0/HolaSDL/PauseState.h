@@ -8,12 +8,12 @@ private:
 
 public:
 	//Todos los métodos sobrescriben los de la clase padre
-	virtual void update() override;
-	virtual void render() override;
+	virtual void Update() override;
+	virtual void Render() override;
 
-	virtual bool onEnter() override;
-	virtual bool onExit() override;
+	virtual bool OnEnter() override;
+	virtual bool OnExit() override;
 
-	virtual std::string getStateID() const { return _pauseID; }
+	virtual std::string GetStateID() const { return _pauseID; }
 };
 

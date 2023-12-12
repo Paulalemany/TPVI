@@ -2,23 +2,23 @@
 
 const string PauseState::_pauseID = "PAUSE";
 
-void PauseState::update()
+void PauseState::Update()
 {
 	// nothing for now
 }
 
-void PauseState::render()
+void PauseState::Render()
 {
 	// nothing for now
 }
 
-bool PauseState::onEnter()
+bool PauseState::OnEnter()
 {
 	cout << "Entrando al PauseState" << endl;
 	return true;
 }
 
-bool PauseState::onExit()
+bool PauseState::OnExit()
 {
 	cout << "Saliendo del PauseState" << endl;
 	return true;
