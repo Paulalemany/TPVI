@@ -2,29 +2,41 @@
 
 #include "GameObject.h"
 #include "EventHandler.h"
+#include "Game.h"
 
 #include <functional> 
 
 // Tipo de función que recibe un evento SDL por referencia
 using callBack = std::function<void(void)>;
+
 class Button : public GameObject,
 			   public EventHandler
 {
 private:
 
-	//Texture* textura;			//Puntero a la textura
-	//SDL_Rect caja;				//Rect del boton
-	//bool encima;
+	//Dibujo del boton
+	SDL_Renderer* renderer = nullptr;	//Puntero al renderer
+	const int buttonW = 30;				//Ancho del laser
+	const int buttonH = 25;				//largo del laser
+
+	SDL_Rect Rect;						//Rect del boton
 
 	////Callback para las funciones que se tengan que hacer al ser pulsado
 	//vector<callBack> callbacks;
 
 public:
-	//Button(Texture* t) {
-	//	textura = t;
-	//	caja.w = textura->getFrameWidth();
-	//	caja.h = textura->getFrameHeight();
-	//}
+	Button(SDL_Renderer* r ) {
+		renderer = r;
+		//Ponemos la posición del botón
+
+		//Rect.x = pos.LeerPosX();
+		//Rect.y = pos.LeerPosY();
+
+		//Dimensiones del botón
+		Rect.w = buttonW;
+		Rect.h = buttonH;
+		
+	}
 
 	void Render() const override;
 

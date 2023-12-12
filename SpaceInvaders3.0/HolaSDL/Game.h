@@ -58,7 +58,7 @@ private:
 	array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 
 	//Objetos
-	Button* boton;
+	//Button* boton;
 
 	//Booleano de salida
 	bool exit = false;

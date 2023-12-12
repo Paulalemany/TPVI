@@ -12,6 +12,10 @@ void EndState::Render()
 	// nothing for now
 }
 
+void EndState::HandleEvent()
+{
+}
+
 bool EndState::OnEnter()
 {
 	cout << "Entrando al EndState" << endl;
@@ -22,4 +26,12 @@ bool EndState::OnExit()
 {
 	cout << "Saliendo del EndState" << endl;
 	return true;
+}
+
+void EndState::AddEventListener()
+{
+}
+
+void EndState::AddObject()
+{
 }

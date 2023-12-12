@@ -2,8 +2,10 @@
 
 void Button::Render() const
 {
-	//Hacemos que simplemente lo renderice por ahora
-	/*textura->renderFrame(caja, textura->getNumRows() - 1, textura->getNumColumns() - 1);*/
+	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);				//Color del boton ¿Amarillo?
+
+	//dibujamos el boton
+	SDL_RenderFillRect(renderer, &Rect);
 }
 
 void Button::Update()

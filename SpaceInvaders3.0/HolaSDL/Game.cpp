@@ -29,10 +29,12 @@ void Game::Render()
 	case MENU: {
 		//Ponemos el fondo del menú
 		texturas[FondoMenu]->render();
+		break;
 	}
 	case PLAY: {
 		//Ponemos el fondo del juego
 		texturas[FondoJuego]->render();
+		break;
 		//Renderizamos todo lo referente al juego
 	}
 	case END: {

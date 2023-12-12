@@ -13,10 +13,11 @@ public:
 	virtual void Render() override;
 	virtual void HandleEvent() override;
 
-
-	//Funciones de transición entre estados
 	virtual bool OnEnter() override;
 	virtual bool OnExit() override;
+
+	virtual void AddEventListener() override;
+	virtual void AddObject() override;
 
 	virtual std::string getStateID() const { return _endID; }
 };
