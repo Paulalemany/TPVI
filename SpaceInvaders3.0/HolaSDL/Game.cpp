@@ -29,6 +29,8 @@ void Game::Render()
 	case MENU: {
 		//Ponemos el fondo del menú
 		texturas[FondoMenu]->render();
+		Button* boton = new Button(renderer, Point2D<double>(310, 200));
+		boton->Render();
 		break;
 	}
 	case PLAY: {
@@ -75,7 +77,6 @@ Game::Game()
 		Texturas();
 		//Cambiamos a gameOver si no se han encontrado las texturas
 		if (!exit) {
-			//boton = new Button(texturas[]);
 			//StartMenu();
 			//Render();
 		}

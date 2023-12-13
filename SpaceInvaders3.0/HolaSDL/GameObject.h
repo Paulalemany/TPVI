@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include "Vector2D.h"
 
 //Reune la funcionalidad común a todos los objetos del juego
 class Game;

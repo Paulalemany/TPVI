@@ -9,6 +9,7 @@
 // Tipo de función que recibe un evento SDL por referencia
 using callBack = std::function<void(void)>;
 
+
 class Button : public GameObject,
 			   public EventHandler
 {
@@ -16,8 +17,8 @@ private:
 
 	//Dibujo del boton
 	SDL_Renderer* renderer = nullptr;	//Puntero al renderer
-	const int buttonW = 30;				//Ancho del laser
-	const int buttonH = 25;				//largo del laser
+	const int buttonW = 175;				//Ancho del boton
+	const int buttonH = 50;				//largo del boton
 
 	SDL_Rect Rect;						//Rect del boton
 
@@ -25,12 +26,15 @@ private:
 	//vector<callBack> callbacks;
 
 public:
-	Button(SDL_Renderer* r ) {
-		renderer = r;
-		//Ponemos la posición del botón
+	Button() {
+		
+	}
 
-		//Rect.x = pos.LeerPosX();
-		//Rect.y = pos.LeerPosY();
+	Button(SDL_Renderer* r, Vector2D<double> pos ) {
+		renderer = r;
+
+		Rect.x = pos.LeerPosX();
+		Rect.y = pos.LeerPosY();
 
 		//Dimensiones del botón
 		Rect.w = buttonW;

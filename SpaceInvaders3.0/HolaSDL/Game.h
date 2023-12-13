@@ -11,6 +11,7 @@
 
 #include "texture.h"
 #include "Button.h"
+#include "Vector2D.h"
 
 #include <iostream>
 #include <filesystem>
@@ -25,14 +26,16 @@ private:
 
 #pragma region parámetros del juego
 
-	static const int fps = 60;
-	int desiredDelta = 1000 / fps;
+	static const int fps = 60,
+	desiredDelta = 1000 / fps,
+	//tamaño de la pantalla
+				winWidth = 800,
+				winHeight = 600;
+
 	SDL_Window* window = nullptr;				//Puntero a la ventana
 	SDL_Renderer* renderer = nullptr;			//Puntero al renderer
 
-	//tamaño de la pantalla
-	int winWidth = 800;
-	int winHeight = 600;
+	
 #pragma endregion
 
 #pragma region Máquina de estados
@@ -58,7 +61,7 @@ private:
 	array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 
 	//Objetos
-	//Button* boton;
+	//Button* raro = new Button();
 
 	//Booleano de salida
 	bool exit = false;
