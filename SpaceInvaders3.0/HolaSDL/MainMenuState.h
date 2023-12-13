@@ -1,5 +1,6 @@
 #pragma once
-#include"GameState.h"
+#include "GameState.h"
+#include "Button.h"
 
 //Todos los estados heredan de la clase base "GameState"
 class MenuState : public GameState
@@ -7,7 +8,17 @@ class MenuState : public GameState
 private:
 	static const std::string _menuID;			//ID del MenuState
 
+	//Puntero al juego para coger el renderer
+	Game* game;
+
+	SDL_Renderer* renderer;
+
 public:
+
+	//Contructora del menú con el renderer
+	MenuState(SDL_Renderer* r) {
+		renderer = r;
+	}
 	//Todos los métodos sobrescriben los de la clase padre
 	virtual void Update() override;
 	virtual void Render() override;

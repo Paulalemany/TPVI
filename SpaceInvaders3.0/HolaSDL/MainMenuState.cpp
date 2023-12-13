@@ -10,7 +10,8 @@ void MenuState::Update()
 
 void MenuState::Render()
 {
-	// nothing for now
+	Button* boton = new Button(renderer, Point2D<double>(310, 200));
+	boton->Render();
 }
 
 void MenuState::HandleEvent()

@@ -29,8 +29,8 @@ void Game::Render()
 	case MENU: {
 		//Ponemos el fondo del menú
 		texturas[FondoMenu]->render();
-		Button* boton = new Button(renderer, Point2D<double>(310, 200));
-		boton->Render();
+		/*Button* boton = new Button(renderer, Point2D<double>(310, 200));
+		boton->Render();*/
 		break;
 	}
 	case PLAY: {
@@ -49,6 +49,7 @@ void Game::Render()
 	}
 	}
 
+	_gameStateMachine->Render();
 	SDL_RenderPresent(renderer);
 }
 
@@ -58,18 +59,18 @@ Game::Game()
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	//Inicializa la ventana SDL
-	try {
 		window = SDL_CreateWindow("SpaceInvaders", SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, winWidth, winHeight, SDL_WINDOW_SHOWN);
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (window == nullptr || renderer == nullptr)
 			throw "Error cargando SDL"s;
-	}
-	catch (...) {
+
+	//Quitar este catch y capturarlo en el main
+	/*catch (...) {
 		cerr << "No se ha podido crear la ventana SDL" << endl;
 		exit = true;
-	}
+	}*/
 	if (!exit) {
 
 		//Hay que cambiar esto para adaptar el menú
@@ -89,7 +90,7 @@ Game::Game()
 	//Creamos la máquina de estados
 	_gameStateMachine = new GameStateMachine();
 	//Le ponemos de estado inicial el menú de inciio
-	_gameStateMachine->pushState(new MenuState());
+	_gameStateMachine->PushState(new MenuState(renderer));
 }
 
 void Game::Texturas()
@@ -154,7 +155,6 @@ void Game::Update() {
 	case PLAY: {
 		//Hacemos el update correspondiente al playState
 		//_play->update();
-		cout << "Estamos jugando!! :D" << endl;
 		break;
 	}
 
@@ -171,7 +171,6 @@ void Game::Update() {
 		break;
 	}
 	}
-	//_gameStateMachine->changeState(new PlayState());
 }
 
 void Game::HandleEvents()
@@ -191,7 +190,7 @@ void Game::HandleEvents()
 		//Probamos para cambiar de estado
 		else if (evento.type == SDL_KEYDOWN && key == SDLK_t) {
 			//Se cambia de estado :)
-			_gameStateMachine->changeState(new PlayState());
+			_gameStateMachine->ReplaceState(new PlayState());
 			_state = PLAY;
 		}
 		//Para cargar y guardar partida

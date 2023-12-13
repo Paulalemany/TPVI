@@ -10,8 +10,6 @@
 #include "EndState.h"
 
 #include "texture.h"
-#include "Button.h"
-#include "Vector2D.h"
 
 #include <iostream>
 #include <filesystem>
@@ -60,9 +58,6 @@ private:
 	enum textures {FondoMenu, FondoJuego, Nave, Bunkers, Aliens, UFO};			//Enum de texturas
 	array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 
-	//Objetos
-	//Button* raro = new Button();
-
 	//Booleano de salida
 	bool exit = false;
 
@@ -87,6 +82,11 @@ public:
 
 	//Método para navegar entre los estados
 	void HandleEvents();
+
+#pragma region Getters
+
+#pragma endregion
+
 
 
 };

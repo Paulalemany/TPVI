@@ -11,11 +11,19 @@ private:
 
 public:
 	//Métodos para intercambiar estados
-	void pushState(GameState* pState);				//Inserta un estado
+	void PushState(GameState* pState);				//Inserta un estado
 
-	void changeState(GameState* pState);			//cambia el estado actual
+	void ReplaceState(GameState* pState);			//cambia el estado actual
 
-	void popState();								//Elimina un estado
+	void PopState();								//Elimina un estado
+
+	void Update();
+
+	void Render();
+
+	void HandleEvent();
+
+
 };
 
 
