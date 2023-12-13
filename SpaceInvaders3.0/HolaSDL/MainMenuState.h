@@ -8,9 +8,7 @@ class MenuState : public GameState
 private:
 	static const std::string _menuID;			//ID del MenuState
 
-	//Puntero al juego para coger el renderer
-	Game* game;
-
+	//Para poder dibujar los botones 
 	SDL_Renderer* renderer;
 
 public:
@@ -19,6 +17,7 @@ public:
 	MenuState(SDL_Renderer* r) {
 		renderer = r;
 	}
+
 	//Todos los métodos sobrescriben los de la clase padre
 	virtual void Update() override;
 	virtual void Render() override;
