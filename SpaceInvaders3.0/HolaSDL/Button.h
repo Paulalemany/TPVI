@@ -7,7 +7,7 @@
 #include <functional> 
 
 // Tipo de función que recibe un evento SDL por referencia
-using callBack = std::function<void(void)>;
+using callBack = std::function<void(const SDL_Event&)>;
 
 
 class Button : public GameObject,
@@ -15,22 +15,31 @@ class Button : public GameObject,
 {
 private:
 
+	//Datos del raton
+	int x, y;							//Posición del ratón
+	SDL_Point point;					//Posición del ratón al pulsar
+
 	//Dibujo del boton
 	SDL_Renderer* renderer = nullptr;	//Puntero al renderer
-	const int buttonW = 175;				//Ancho del boton
+	const int buttonW = 175;			//Ancho del boton
 	const int buttonH = 50;				//largo del boton
-
 	SDL_Rect Rect;						//Rect del boton
 
-	////Callback para las funciones que se tengan que hacer al ser pulsado
-	//vector<callBack> callbacks;
+	//Animación del boton
+	int currentFrame;
+	enum ButtonState { MouseOut, MouseOver, MouseClick };
+
+	//Callback para las funciones que se tengan que hacer al ser pulsado
+	list<callBack> callbacks;
+
+	//Hay un método privado porque el único que debe ser capaz de emitir el evento de botón pulsado es el propio botón
+	void emit() const;
 
 public:
-	Button() {
-		
-	}
 
+	//Constructora
 	Button(SDL_Renderer* r, Vector2D<double> pos ) {
+
 		renderer = r;
 
 		Rect.x = pos.LeerPosX();
@@ -39,6 +48,9 @@ public:
 		//Dimensiones del botón
 		Rect.w = buttonW;
 		Rect.h = buttonH;
+
+		//Inicializamos el estado del raton como fuera dek botón
+		currentFrame = MouseOut;
 		
 	}
 
@@ -48,9 +60,9 @@ public:
 
 	void save(std::ostream& out) const override;
 
-	//void HandleEvent(const SDL_Event& event) override;
+	void HandleEvent(const SDL_Event& event) override;
 
-	////Asocia los callBacks
+	//Asocia los callBacks
 	void Connect(callBack cb);
 
 };

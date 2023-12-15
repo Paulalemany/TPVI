@@ -1,8 +1,23 @@
 #include "Button.h"
 
+void Button::emit() const
+{
+	//LLama al HandleEvent de cada oyente
+	for (callBack buttonCallback : callbacks) {
+
+		//Ejecutamos el buttonCallback
+	}
+}
+
 void Button::Render() const
 {
-	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);				//Color del boton ¿Amarillo?
+	//Dependiendo del estado del ratón lo ponemos de un color u otro
+	if (currentFrame == MouseOut) {
+		SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);	//Amarillo clarito
+	}
+	else {
+		SDL_SetRenderDrawColor(renderer, 255, 215, 0, 255);	//Amarillo oscuro
+	}
 
 	//dibujamos el boton
 	SDL_RenderFillRect(renderer, &Rect);
@@ -10,11 +25,13 @@ void Button::Render() const
 
 void Button::Update()
 {
-	//SDL_Point point;
-	//SDL_GetMouseState(&point.x, &point.y);
+	SDL_GetMouseState(&point.x, &point.y);
 
-	////Comprobamos si el ratón está sobre el rectángulo
-	//encima = SDL_PointInRect(&point, &caja);
+	//Comprobamos si el ratón está sobre el rectángulo
+	if (SDL_PointInRect(&point, &Rect)) {
+		currentFrame = MouseOver;
+	}
+	else { currentFrame = MouseOut; }
 }
 
 void Button::save(std::ostream& out) const
@@ -22,22 +39,23 @@ void Button::save(std::ostream& out) const
 
 }
 
-//void Button::HandleEvent(const SDL_Event& event)
-//{
-//	//Comprueba si se hace el click izquierdo del raton
-//	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-//		//posición del ratón cuando se pulsa
-//		SDL_Point point{ event.button.x, event.button.y };
-//
-//		//Vemos si el punto está en el mismo sitio que el botón
-//		if (SDL_PointInRect(&point, &caja)) {
-//			//Acción que queremos que se haga
-//		}
-//	}
-//}
+void Button::HandleEvent(const SDL_Event& event)
+{
+	//Comprueba si se hace el click izquierdo del raton
+	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+		//posición del ratón cuando se pulsa
+		SDL_Point point{ event.button.x, event.button.y };
+
+		//Vemos si el punto está en el mismo sitio que el botón
+		if (SDL_PointInRect(&point, &Rect)) {
+			//Aun no se llama desde ningun lugar por lo que no va el input
+			cout << "WOOOOOO";
+		}
+	}
+}
 
 void Button::Connect(callBack cb)
 {
 	//Añadimos el callback al vector
-	/*callbacks.push_back(cb);*/
+	callbacks.push_back(cb);
 }

@@ -1,9 +1,9 @@
 #pragma once
+#include <SDL.h> 
 
-class Game;
 class EventHandler
 {
 public:
-	//virtual void HandleEvent(const SDL_Event& event) = 0;
+	virtual void HandleEvent(const SDL_Event& event) = 0;
 };
 
