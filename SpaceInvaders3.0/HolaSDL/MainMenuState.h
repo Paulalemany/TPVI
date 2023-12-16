@@ -2,6 +2,8 @@
 #include "GameState.h"
 #include "Button.h"
 
+class Button;
+
 //Todos los estados heredan de la clase base "GameState"
 class MenuState : public GameState
 {
@@ -10,13 +12,12 @@ private:
 
 	//Para poder dibujar los botones 
 	SDL_Renderer* renderer;
+	Button* bb;
 
 public:
 
 	//Contructora del menú con el renderer
-	MenuState(SDL_Renderer* r) {
-		renderer = r;
-	}
+	MenuState(SDL_Renderer* r);
 
 	//Todos los métodos sobrescriben los de la clase padre
 	virtual void Update() override;

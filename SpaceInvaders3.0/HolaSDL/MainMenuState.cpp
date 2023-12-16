@@ -1,17 +1,21 @@
 #include "MainMenuState.h"
 
-
 const string MenuState::_menuID = "MENU";
+
+MenuState::MenuState(SDL_Renderer* r)
+{
+	renderer = r;
+	bb = new Button(renderer, Point2D<double>(310, 200));
+}
 
 void MenuState::Update()
 {
-	// nothing for now
+	bb->Update();
 }
 
 void MenuState::Render()
 {
-	Button* boton = new Button(renderer, Point2D<double>(310, 200));
-	boton->Render();
+	bb->Render();
 }
 
 void MenuState::HandleEvent()

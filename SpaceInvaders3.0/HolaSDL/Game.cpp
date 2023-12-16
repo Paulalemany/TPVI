@@ -171,6 +171,8 @@ void Game::Update() {
 		break;
 	}
 	}
+
+	_gameStateMachine->Update();
 }
 
 void Game::HandleEvents()
