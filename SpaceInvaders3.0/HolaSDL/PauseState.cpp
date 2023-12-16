@@ -12,7 +12,7 @@ void PauseState::Render()
 	// nothing for now
 }
 
-void PauseState::HandleEvent()
+void PauseState::HandleEvent(const SDL_Event& event)
 {
 }
 

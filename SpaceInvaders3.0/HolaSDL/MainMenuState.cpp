@@ -18,8 +18,9 @@ void MenuState::Render()
 	bb->Render();
 }
 
-void MenuState::HandleEvent()
+void MenuState::HandleEvent(const SDL_Event& event)
 {
+	bb->HandleEvent(event);
 }
 
 bool MenuState::OnEnter()

@@ -22,7 +22,7 @@ public:
 	//Funciones necesarias para todas las clases hijas de GameState
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-	virtual void HandleEvent() = 0;
+	virtual void HandleEvent(const SDL_Event& event) = 0;
 
 
 	//Funciones de transición entre estados

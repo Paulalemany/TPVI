@@ -44,7 +44,7 @@ void GameStateMachine::Render()
 	_pilaGameStates.top()->Render();
 }
 
-void GameStateMachine::HandleEvent()
+void GameStateMachine::HandleEvent(const SDL_Event& event)
 {
-	_pilaGameStates.top()->HandleEvent();
+	_pilaGameStates.top()->HandleEvent(event);
 }

@@ -12,7 +12,7 @@ void EndState::Render()
 	// nothing for now
 }
 
-void EndState::HandleEvent()
+void EndState::HandleEvent(const SDL_Event& event)
 {
 }
 

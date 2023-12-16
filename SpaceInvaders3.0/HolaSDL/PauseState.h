@@ -10,7 +10,7 @@ public:
 	//Todos los métodos sobrescriben los de la clase padre
 	virtual void Update() override;
 	virtual void Render() override;
-	virtual void HandleEvent() override;
+	virtual void HandleEvent(const SDL_Event& event) override;
 
 	virtual bool OnEnter() override;
 	virtual bool OnExit() override;

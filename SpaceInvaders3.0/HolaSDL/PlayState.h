@@ -37,9 +37,33 @@ private:
 
 public:
 
-	virtual void Update() override;
-	virtual void Render() override;
-	virtual void HandleEvent() override;
+	//Constructora
+	PlayState() {};
+
+	void Update() override;
+	void Render() override;
+	
+#pragma region Inicialización
+
+	void Mapas(string file);
+
+	void Save(const string& saveFileName) const;
+#pragma endregion
+
+#pragma region Input
+
+	void HandleEvent(const SDL_Event& event) override;
+
+	void SetScore(int s);
+
+	void FireLaser(Point2D<double> p, bool origen);
+
+	//bool Colisiones(Laser* laser);
+
+	//void hasDied(list<SceneObject*>::iterator& ite);
+#pragma endregion
+
+#pragma region Máquina de estados
 
 	virtual bool OnEnter() override;
 	virtual bool OnExit() override;
@@ -48,6 +72,9 @@ public:
 	virtual void AddObject() override;
 
 	virtual std::string GetStateID() const { return _playID; }
+#pragma endregion
+
+	
 
 };
 

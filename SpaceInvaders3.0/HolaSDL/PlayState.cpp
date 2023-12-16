@@ -12,7 +12,24 @@ void PlayState::Render()
 	// nothing for now
 }
 
-void PlayState::HandleEvent()
+void PlayState::Mapas(string file)
+{
+}
+
+void PlayState::Save(const string& saveFileName) const
+{
+}
+
+void PlayState::HandleEvent(const SDL_Event& event)
+{
+
+}
+
+void PlayState::SetScore(int s)
+{
+}
+
+void PlayState::FireLaser(Point2D<double> p, bool origen)
 {
 }
 

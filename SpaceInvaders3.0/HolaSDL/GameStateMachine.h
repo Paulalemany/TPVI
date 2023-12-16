@@ -21,7 +21,7 @@ public:
 
 	void Render();
 
-	void HandleEvent();
+	void HandleEvent(const SDL_Event& event);
 
 
 };
