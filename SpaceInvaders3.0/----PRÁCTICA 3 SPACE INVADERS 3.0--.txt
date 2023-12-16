@@ -130,6 +130,14 @@ Recompensables: escudo/bomba, tipo SceneObject
 	· Clase Bomb ->
 				Láser con 2 vidas y otra apariencia
 				En cada colisión solo causa y sufre 1 de daño
+
+
+
+
+
+
+
+Clase GameList (No olvidar)
 		
 
 
