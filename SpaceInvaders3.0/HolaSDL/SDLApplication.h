@@ -10,15 +10,9 @@
 #include "EndState.h"
 
 #include "texture.h"
-
-#include <iostream>
-#include <filesystem>
 #include <array>
-#include <fstream>
-#include <list>
-#include <string>
 
-class Game
+class SDLApplication
 {
 private:
 
@@ -26,7 +20,7 @@ private:
 
 	static const int fps = 60,
 	desiredDelta = 1000 / fps,
-	//tamaño de la pantalla
+	//Tamaño de la pantalla
 				winWidth = 800,
 				winHeight = 600;
 
@@ -37,6 +31,7 @@ private:
 #pragma endregion
 
 #pragma region Máquina de estados
+	SDLApplication* game = this;
 
 	enum game_states
 	{
@@ -51,6 +46,13 @@ private:
 
 	//Creamos un puntero a la máquina de estados dentro del game
 	GameStateMachine* _gameStateMachine;
+
+	//Creamos los estados
+	MenuState* _menu; 
+	PlayState* _play;
+	PauseState* _pause;
+	EndState* _end;
+	
 #pragma endregion
 
 	//Texturas
@@ -71,22 +73,25 @@ public:
 #pragma region Inicio
 
 	//Constructora de game
-	Game();
+	SDLApplication();
 
 	void Texturas();
 #pragma endregion
 
-
 	//Update del juego
 	void Update();
 
-	//Método para navegar entre los estados
+	//Método para Input de los estados
 	void HandleEvents();
 
-#pragma region Getters
+	void ChangeState(int s);
 
+#pragma region getters y Setters
+
+	void SetExit(bool y) { exit = y; }
+
+	Texture* GetTexture(int i) { return texturas[i]; }
 #pragma endregion
-
 
 
 };

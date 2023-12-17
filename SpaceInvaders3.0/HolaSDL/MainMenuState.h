@@ -1,9 +1,7 @@
 #pragma once
 #include "GameState.h"
-#include "Button.h"
 
 class Button;
-
 //Todos los estados heredan de la clase base "GameState"
 class MenuState : public GameState
 {
@@ -12,23 +10,27 @@ private:
 
 	//Para poder dibujar los botones 
 	SDL_Renderer* renderer;
-	Button* bb;
+
+	//Botones del menú
+	Button* _playButton;
+	Button* _loadButton;
+	Button* _exitButton;
+
+	//Callbacks para los botones
+	void Play();
+	void Load();
+	void Exit();
 
 public:
 
 	//Contructora del menú con el renderer
-	MenuState(SDL_Renderer* r);
+	MenuState(SDLApplication* game, SDL_Renderer* r);
 
 	//Todos los métodos sobrescriben los de la clase padre
-	virtual void Update() override;
-	virtual void Render() override;
-	virtual void HandleEvent(const SDL_Event& event) override;
+	void Render() override;
 
-	virtual bool OnEnter() override;
-	virtual bool OnExit() override;
-
-	virtual void AddEventListener() override;
-	virtual void AddObject() override;
+	bool OnEnter() override;
+	bool OnExit() override;
 
 	virtual std::string GetStateID() const { return _menuID; }
 };

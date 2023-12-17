@@ -28,10 +28,4 @@ bool PauseState::OnExit()
 	return true;
 }
 
-void PauseState::AddEventListener()
-{
-}
 
-void PauseState::AddObject()
-{
-}

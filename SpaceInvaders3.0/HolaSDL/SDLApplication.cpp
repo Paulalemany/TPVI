@@ -1,6 +1,7 @@
-#include "Game.h"
+#include "SDLApplication.h"
 
-void Game::Run()
+
+void SDLApplication::Run()
 {
 	while (!exit) {
 
@@ -19,7 +20,7 @@ void Game::Run()
 	}
 }
 
-void Game::Render()
+void SDLApplication::Render()
 {
 	//Limpiamos la pantalla
 	SDL_RenderClear(renderer);
@@ -53,7 +54,8 @@ void Game::Render()
 	SDL_RenderPresent(renderer);
 }
 
-Game::Game()
+//Constructora
+SDLApplication::SDLApplication()
 {
 	//Iniciamos todo
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -73,19 +75,23 @@ Game::Game()
 	}*/
 	if (!exit) {
 
-		//Hay que cambiar esto para adaptar el menú
 		//Cargamos todo el estado inicial del juego
 		Texturas();
 		//Cambiamos a gameOver si no se han encontrado las texturas
+
 		if (!exit) {
-			//StartMenu();
 			//Inicializamos el estado actual al primer estado
 			_state = MENU;
 
 			//Creamos la máquina de estados
 			_gameStateMachine = new GameStateMachine();
+			_menu = new MenuState(game, renderer);
+			_play = new PlayState(game);
+			//_pause = new PauseState(game);
+			//_end = new EndState(game);
+
 			//Le ponemos de estado inicial el menú de inciio
-			_gameStateMachine->PushState(new MenuState(renderer));
+			_gameStateMachine->PushState(_menu);
 
 			Render();
 		}
@@ -94,7 +100,7 @@ Game::Game()
 	
 }
 
-void Game::Texturas()
+void SDLApplication::Texturas()
 {
 	//Raiz común de todas las texturas
 	string textureRoot = "..\\images\\";
@@ -142,7 +148,7 @@ void Game::Texturas()
 	}
 }
 
-void Game::Update() {
+void SDLApplication::Update() {
 
 	switch (_state)
 	{
@@ -176,7 +182,7 @@ void Game::Update() {
 	_gameStateMachine->Update();
 }
 
-void Game::HandleEvents()
+void SDLApplication::HandleEvents()
 {
 	SDL_Event evento;
 
@@ -247,4 +253,29 @@ void Game::HandleEvents()
 //		}
 //	}
 
+}
+
+void SDLApplication::ChangeState(int s)
+{
+	_state = s;
+	//Dependiendo del estado en el que vayamos a entrar, hacemos una cosa u otra
+	switch (_state) {
+		//Realmente no se puede (en un principio) volver al menú de inicio pero bueno
+	case MENU: {
+		_gameStateMachine->ReplaceState(_menu);
+		break;
+	}
+	case PLAY: {
+		_gameStateMachine->ReplaceState(_play);
+		break;
+	}
+	case END: {
+		_gameStateMachine->ReplaceState(_end);
+		break;
+	}
+	case PAUSE: {
+		_gameStateMachine->ReplaceState(_pause);
+		break;
+	}
+	}
 }

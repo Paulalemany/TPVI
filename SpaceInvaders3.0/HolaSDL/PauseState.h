@@ -15,9 +15,6 @@ public:
 	virtual bool OnEnter() override;
 	virtual bool OnExit() override;
 
-	virtual void AddEventListener() override;
-	virtual void AddObject() override;
-
 	virtual std::string GetStateID() const { return _pauseID; }
 };
 

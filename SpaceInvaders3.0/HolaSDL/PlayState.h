@@ -1,6 +1,11 @@
 #pragma once
 
 #include "GameState.h"
+#include "SDLApplication.h"
+#include "gameList.h"
+
+#include "SceneObject.h"
+#include "Bunker.h"
 
 #include <iostream>
 #include <filesystem>
@@ -10,6 +15,7 @@
 #include <string>
 
 
+
 //Todos los estados heredan de la clase base "GameState"
 class PlayState : public GameState
 {
@@ -17,7 +23,7 @@ private:
 	static const std::string _playID;					//ID del PlayState
 
 	//Lectura de archivos
-	const string mapa = "..\\mapas\\original.txt",		//Ruta del mapa a utilizar
+	const string mapa = "..\\SpaceInvaders3.0\\mapas\\original.txt",		//Ruta del mapa a utilizar
 				 guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
 
 	string savedCode = " ";								//Código de la partida guardada
@@ -38,7 +44,7 @@ private:
 public:
 
 	//Constructora
-	PlayState() {};
+	PlayState(SDLApplication* g): GameState(g) {};
 
 	void Update() override;
 	void Render() override;
@@ -61,15 +67,13 @@ public:
 	//bool Colisiones(Laser* laser);
 
 	//void hasDied(list<SceneObject*>::iterator& ite);
+	void hasDied();
 #pragma endregion
 
 #pragma region Máquina de estados
 
-	virtual bool OnEnter() override;
-	virtual bool OnExit() override;
-
-	virtual void AddEventListener() override;
-	virtual void AddObject() override;
+	bool OnEnter() override;
+	bool OnExit() override;
 
 	virtual std::string GetStateID() const { return _playID; }
 #pragma endregion

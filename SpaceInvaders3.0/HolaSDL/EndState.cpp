@@ -27,11 +27,3 @@ bool EndState::OnExit()
 	cout << "Saliendo del EndState" << endl;
 	return true;
 }
-
-void EndState::AddEventListener()
-{
-}
-
-void EndState::AddObject()
-{
-}

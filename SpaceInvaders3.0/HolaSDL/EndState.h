@@ -1,7 +1,6 @@
 #pragma once
 #include"GameState.h"
 
-
 class EndState : public GameState
 {
 private:
@@ -9,16 +8,13 @@ private:
 
 public:
 	//Todos los métodos sobrescriben los de la clase padre
-	virtual void Update() override;
-	virtual void Render() override;
-	virtual void HandleEvent(const SDL_Event& event) override;
+	void Update() override;
+	void Render() override;
+	void HandleEvent(const SDL_Event& event) override;
 
-	virtual bool OnEnter() override;
-	virtual bool OnExit() override;
+	bool OnEnter() override;
+	bool OnExit() override;
 
-	virtual void AddEventListener() override;
-	virtual void AddObject() override;
-
-	virtual std::string getStateID() const { return _endID; }
+	virtual std::string GetStateID() const { return _endID; }
 };
 

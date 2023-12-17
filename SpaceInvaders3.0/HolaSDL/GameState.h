@@ -9,20 +9,23 @@
 
 using namespace std;
 
-class Game;
+class GameObject;
+class SDLApplication;
 class GameState
 {
-private:
-	Game* game;									//Puntero al juego
+protected:
+	SDLApplication* game;						//Puntero al juego
 	GameList<GameObject, true> gameList;		//Lista de objetos del juego
-	list<EventHandler*> lista;					//Manejadores de eventos
+	list<EventHandler*> listenerList;			//Manejadores de eventos
 
 public:
+	//Constructora
+	GameState(SDLApplication* g) { game = g; }
 
 	//Funciones necesarias para todas las clases hijas de GameState
-	virtual void Update() = 0;
+	virtual void Update();
 	virtual void Render() = 0;
-	virtual void HandleEvent(const SDL_Event& event) = 0;
+	virtual void HandleEvent(const SDL_Event& event);
 
 
 	//Funciones de transición entre estados
@@ -30,8 +33,8 @@ public:
 	virtual bool OnExit() = 0;
 
 	//Metodos para añadir 
-	virtual void AddEventListener() = 0;
-	virtual void AddObject() = 0;
+	void AddEventListener(EventHandler* lis);
+	void AddObject(GameObject* obj);
 
 	//Getter del ID del estado en el que esté
 	virtual std::string GetStateID() const = 0;

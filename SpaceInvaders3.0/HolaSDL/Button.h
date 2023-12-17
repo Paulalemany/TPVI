@@ -2,12 +2,12 @@
 
 #include "GameObject.h"
 #include "EventHandler.h"
-#include "Game.h"
+#include "SDLApplication.h"
 
 #include <functional> 
 
 // Tipo de función que recibe un evento SDL por referencia
-using callBack = std::function<void(const SDL_Event&)>;
+using callBack = std::function<void(void)>;
 
 
 class Button : public GameObject,
@@ -18,6 +18,7 @@ private:
 	//Datos del raton
 	int x, y;							//Posición del ratón
 	SDL_Point point;					//Posición del ratón al pulsar
+	//Utiliza un Point2D para la pos
 
 	//Dibujo del boton
 	SDL_Renderer* renderer = nullptr;	//Puntero al renderer
@@ -38,7 +39,10 @@ private:
 public:
 
 	//Constructora
-	Button(SDL_Renderer* r, Vector2D<double> pos ) {
+	//GameState para el game object??
+	Button(GameState* g, SDL_Renderer* r, Vector2D<double> pos )
+	: GameObject(g)
+	{
 
 		renderer = r;
 

@@ -5,7 +5,7 @@ void Button::emit() const
 	//LLama al HandleEvent de cada oyente
 	for (callBack buttonCallback : callbacks) {
 
-		//Ejecutamos el buttonCallback
+		buttonCallback();
 	}
 }
 
@@ -48,8 +48,7 @@ void Button::HandleEvent(const SDL_Event& event)
 
 		//Vemos si el punto está en el mismo sitio que el botón
 		if (SDL_PointInRect(&point, &Rect)) {
-			//Aun no se llama desde ningun lugar por lo que no va el input
-			cout << "WOOOOOO";
+			emit();
 		}
 	}
 }

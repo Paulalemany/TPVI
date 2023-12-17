@@ -69,9 +69,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Bunker.cpp" />
     <ClCompile Include="EndState.cpp" />
     <ClCompile Include="EventHandler.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
+    <ClCompile Include="SDLApplication.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
@@ -83,10 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Bunker.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="EndState.h" />
     <ClInclude Include="EventHandler.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="SceneObject.h" />
+    <ClInclude Include="SDLApplication.h" />
     <ClInclude Include="gameList.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
