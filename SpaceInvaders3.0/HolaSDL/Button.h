@@ -40,8 +40,8 @@ public:
 
 	//Constructora
 	//GameState para el game object??
-	Button(GameState* g, SDL_Renderer* r, Vector2D<double> pos )
-	: GameObject(g)
+	Button(SDLApplication* a, GameState* g, SDL_Renderer* r, Vector2D<double> pos )
+	: GameObject(a, g)
 	{
 
 		renderer = r;

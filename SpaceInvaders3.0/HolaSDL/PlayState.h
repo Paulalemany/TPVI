@@ -5,14 +5,17 @@
 #include "gameList.h"
 
 #include "SceneObject.h"
+#include "MotherShip.h"
 #include "Bunker.h"
+#include "Laser.h"
+#include "Alien.h"
 
-#include <iostream>
-#include <filesystem>
-#include <array>
+//#include <iostream>
+//#include <filesystem>
+//#include <array>
 #include <fstream>
-#include <list>
-#include <string>
+//#include <list>
+//#include <string>
 
 
 
@@ -23,7 +26,7 @@ private:
 	static const std::string _playID;					//ID del PlayState
 
 	//Lectura de archivos
-	const string mapa = "..\\SpaceInvaders3.0\\mapas\\original.txt",		//Ruta del mapa a utilizar
+	const string mapa = "..\\mapas\\trinchera.txt",		//Ruta del mapa a utilizar
 				 guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
 
 	string savedCode = " ";								//Código de la partida guardada
@@ -41,10 +44,19 @@ private:
 		bunker, ufo, laser, puntos
 	};
 
+	//Lista de elementos del juego
+	GameList<SceneObject, true> sceneObjectsList;		//Lista de objetos del juego
+
+	//Creamos el motherShip
+	MotherShip* mothership;
+
 public:
 
 	//Constructora
-	PlayState(SDLApplication* g): GameState(g) {};
+	PlayState(SDLApplication* g): GameState(g) 
+	{
+		mothership = new MotherShip(game, this);
+	};
 
 	void Update() override;
 	void Render() override;
@@ -64,7 +76,7 @@ public:
 
 	void FireLaser(Point2D<double> p, bool origen);
 
-	//bool Colisiones(Laser* laser);
+	bool Colisiones(Laser* laser);
 
 	//void hasDied(list<SceneObject*>::iterator& ite);
 	void hasDied();

@@ -6,14 +6,16 @@ class PlayState;
 class SceneObject: public GameObject
 {
 protected:
-	Point2D<double> pos;			//Posición del objeto instanciado
+	Point2D<double> pos;						//Posición del objeto instanciado
 
-	SDL_Rect rect;					//Rect de la imagen
-	Texture* textura = nullptr;		//Puntero a la textura
-	int vida;						//Vida del objeto
+	SDL_Rect rect;								//Rect de la imagen
+	Texture* textura = nullptr;					//Puntero a la textura
+	int vida;									//Vida del objeto
 
-	PlayState* _playState;			//Puntero al playState
-	//No se si hace falta interador
+	PlayState* _playState = nullptr;			//Puntero al playState
+
+	//anchor
+	GameList<SceneObject, true>::anchor sceneanc = nullptr;
 
 public:
 
@@ -25,8 +27,8 @@ public:
 	}
 
 	//Constructora
-	SceneObject(PlayState* ps, Point2D<double> p, Texture* t, int v)
-	: GameObject(ps)
+	SceneObject(SDLApplication* g, PlayState* ps, Point2D<double> p, Texture* t, int v)
+	: GameObject(g, ps)
 	{
 		_playState = ps;
 		pos = p;
@@ -48,7 +50,7 @@ public:
 		rect.y = pos.LeerPosY();
 	}
 
-	virtual void Hit(const SDL_Rect* r, bool o);
+	virtual bool Hit(const SDL_Rect* r, bool o);
 
 	void save(std::ostream& out) const override;
 
@@ -58,6 +60,10 @@ public:
 	//Devuelve un puntero al rect del objeto
 	const SDL_Rect* GetRect() const { return &rect; }
 
-	//No se si hacen falta los métodos del iterator
+	void setListAnchor(GameList<SceneObject, true>::anchor newanc) // list<SceneObject*>::iterator& newit
+	{
+		// setea el iterador de la posicion del objeto en la lista
+		sceneanc = newanc;
+	};
 };
 

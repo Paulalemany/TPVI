@@ -91,6 +91,11 @@ public:
 	void SetExit(bool y) { exit = y; }
 
 	Texture* GetTexture(int i) { return texturas[i]; }
+
+	int GetWinWidth() { return winWidth; }
+
+	int GetWinHeight() { return winHeight; }
+
 #pragma endregion
 
 

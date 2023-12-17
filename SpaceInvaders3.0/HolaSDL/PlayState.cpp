@@ -9,7 +9,10 @@ void PlayState::Update()
 
 void PlayState::Render()
 {
-	// nothing for now
+	//recorremos la lista de elementos del juego
+	for (SceneObject& a : sceneObjectsList) {
+		a.Render();
+	}
 }
 
 void PlayState::Mapas(string file)
@@ -29,8 +32,9 @@ void PlayState::Mapas(string file)
 #pragma endregion
 
 	//Abrimos el archivo a leer
-	ifstream Mapa;
-	Mapa.open(mapa);
+	ifstream Mapa(mapa);
+	/*ifstream Mapa;
+	Mapa.open(mapa);*/
 
 	//Si no encuentra el archivo lanzamos una excepción
 	if (Mapa.fail()) {
@@ -49,10 +53,27 @@ void PlayState::Mapas(string file)
 		if (elem == bunker) {
 			//para leer las vidas
 			Mapa >> aux;
-			o = new Bunker(this, pos, game->GetTexture(3), aux);
+			o = new Bunker(game, this, pos, game->GetTexture(3), aux);
+			sceneObjectsList.push_back(o);
+		}
+		else if (elem == laser) {
+			Mapa >> aux;
+			o = new Laser();
+		}
+		else if (elem == alien || elem == shooterAlien) {
+			Mapa >> indice;
+			if (elem == shooterAlien) {
+				//Lo utilizamos para el coolDown
+				Mapa >> elem;
+				//o = new ShooterAlien(this, pos, texturas[Aliens], mothership, 1, indice, frame, elem);
+			}
+			else {
+				o = new Alien(game, this, pos, game->GetTexture(4), mothership, 1, indice, frame);
+			}
+			frame++;
 		}
 
-		AddObject(o);
+		
 
 	}
 }
@@ -72,6 +93,11 @@ void PlayState::SetScore(int s)
 
 void PlayState::FireLaser(Point2D<double> p, bool origen)
 {
+}
+
+bool PlayState::Colisiones(Laser* laser)
+{
+	return false;
 }
 
 void PlayState::hasDied()

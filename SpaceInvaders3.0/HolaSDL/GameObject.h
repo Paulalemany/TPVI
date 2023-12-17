@@ -5,14 +5,14 @@
 
 
 //Reune la funcionalidad común a todos los objetos del juego
-//class SDLApplication;
+class SDLApplication;
 class GameState;
 class PlayState;
 class GameObject
 {
 protected:
 	//A lo mejor podemos quitar esto
-	//SDLApplication* game;		//Puntero al juego
+	SDLApplication* game;		//Puntero al juego
 
 	GameState* _gameState;		//Estado del juego, para el play state
 
@@ -21,12 +21,12 @@ protected:
 public:
 
 	//Constructora vacía
-	GameObject() { _gameState = nullptr; }
+	GameObject() { game = nullptr;  _gameState = nullptr; }
 
 	//Contructora
-	GameObject(GameState* stat);
+	GameObject(SDLApplication* g, GameState* stat);
 
-	GameObject(PlayState* stat);
+	GameObject(SDLApplication* g, PlayState* stat);
 
 	//Métodos virtuales puros
 	virtual void Render() const = 0;

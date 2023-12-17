@@ -7,10 +7,13 @@ void Bunker::Render() const
 	textura->renderFrame(rect, textura->getNumRows() - 1, 4 - vida);
 }
 
-void Bunker::Hit(const SDL_Rect* r, bool o)
+ bool Bunker::Hit(const SDL_Rect* r, bool o)
 {
 	//Al ser un bunker nos da igual el origen del laser
-	if (SDL_HasIntersection(r, GetRect())) { SceneObject::Hit(r, o); }
+	 if (SDL_HasIntersection(r, GetRect())) { 
+		 SceneObject::Hit(r, o);
+		 return true; 
+	 }
 
 	//Si se queda sin vidas llama al hasDied del estado en el que está
 	if (vida == 0) { _playState->hasDied(); }

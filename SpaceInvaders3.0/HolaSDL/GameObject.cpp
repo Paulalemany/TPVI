@@ -1,8 +1,15 @@
 #include "GameObject.h"
 #include "GameState.h"
 #include "PlayState.h"
+#include "SDLApplication.h"
 
 
-GameObject::GameObject(GameState* stat) { _gameState = stat; }
+GameObject::GameObject(SDLApplication* g, GameState* stat) {
+	game = g;
+	_gameState = stat; 
+}
 
-GameObject::GameObject(PlayState* game) { _gameState = game; }
+GameObject::GameObject(SDLApplication* g, PlayState* ps) { 
+	game = g;
+	_gameState = ps; }
+

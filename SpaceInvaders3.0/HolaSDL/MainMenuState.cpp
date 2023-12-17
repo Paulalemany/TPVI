@@ -27,9 +27,9 @@ MenuState::MenuState(SDLApplication* g, SDL_Renderer* r) : GameState(g)
 	renderer = r;
 
 	//Creamos los diferentes botones
-	_playButton = new Button(this, renderer, Point2D<double>(310, 150));
-	_loadButton = new Button(this, renderer, Point2D<double>(200, 240));
-	_exitButton = new Button(this, renderer, Point2D<double>(420, 240));
+	_playButton = new Button(game, this, renderer, Point2D<double>(310, 150));
+	_loadButton = new Button(game, this, renderer, Point2D<double>(200, 240));
+	_exitButton = new Button(game, this, renderer, Point2D<double>(420, 240));
 
 	//Añadimos los botones a la lista de objetos
 	//(por ahora solo usaremos el playButton por lo aue voy a comentar el resto)

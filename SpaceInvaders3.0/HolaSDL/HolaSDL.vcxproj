@@ -68,10 +68,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Bunker.cpp" />
     <ClCompile Include="EndState.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="MotherShip.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="SDLApplication.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -84,11 +87,14 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Bunker.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="EndState.h" />
     <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="Laser.h" />
+    <ClInclude Include="MotherShip.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SDLApplication.h" />
     <ClInclude Include="gameList.h" />

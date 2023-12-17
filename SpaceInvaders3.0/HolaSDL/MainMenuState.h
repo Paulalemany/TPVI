@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 
+
 class Button;
 //Todos los estados heredan de la clase base "GameState"
 class MenuState : public GameState
