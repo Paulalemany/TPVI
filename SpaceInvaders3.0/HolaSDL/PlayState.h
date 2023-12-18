@@ -12,6 +12,7 @@
 #include "Ufo.h"
 #include "Cannon.h"
 #include "Reward.h"
+#include "Bomb.h"
 
 #include <fstream>
 #include <random>
@@ -94,6 +95,8 @@ public:
 	void DropReward(Point2D<double> pos);
 
 	void ShieldReward();
+
+	void FireBomb(Point2D<double> pos);
 
 #pragma endregion
 

@@ -224,6 +224,14 @@ void PlayState::ShieldReward()
 	nave->ImInvencible();
 }
 
+void PlayState::FireBomb(Point2D<double> pos)
+{
+	//Crea la bomba
+	Bomb* bomba = new Bomb(game, this, pos, game->GetTexture(6), 2);
+
+	sceneObjectsList.push_back(bomba);
+}
+
 bool PlayState::OnEnter()
 {
 	cout << "Entrando en PlayState" << endl;

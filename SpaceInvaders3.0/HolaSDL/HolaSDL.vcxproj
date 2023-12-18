@@ -69,6 +69,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Bunker.cpp" />
     <ClCompile Include="Cannon.cpp" />
@@ -92,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Bunker.h" />
     <ClInclude Include="Cannon.h" />

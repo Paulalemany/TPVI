@@ -16,7 +16,7 @@ private:
 
 	int rewardProb;					//Probabilidad de que te caiga un objeto
 	int minProbReward = 1,
-		maxProbReward = 1;
+		maxProbReward = 4;
 
 public:
 	//Constructora vacia

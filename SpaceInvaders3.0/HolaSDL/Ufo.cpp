@@ -63,6 +63,9 @@ bool Ufo::Hit(const SDL_Rect* r, bool o)
 		// gestion de dropeo de reward
 		rewardProb = _playState->getRandomRange(minProbReward, maxProbReward);
 		if (rewardProb == 1) {
+			_playState->FireBomb(pos);
+		}
+		else {
 			_playState->DropReward(pos);
 		}
 		return true;
