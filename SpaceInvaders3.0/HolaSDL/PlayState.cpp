@@ -159,8 +159,8 @@ void PlayState::isGameOver()
 {
 	gameOver = true;
 	cout << "Has perdido :(";
-	game->ChangeState(2);
-	game->GetMachine()->ReplaceState(new EndState(game));
+	game->ChangeState(0);
+	game->GetMachine()->ReplaceState(new MenuState(game));
 }
 
 bool PlayState::OnEnter()

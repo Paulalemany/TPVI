@@ -6,6 +6,10 @@ class EndState : public GameState
 private:
 	static const std::string _endID;			//ID del endState
 
+	////Botones
+	//Button* _exitButton;						//Boton para salir del juego
+	//Button* _newGameButton;					//Boton para cargar partida
+
 public:
 
 	EndState(SDLApplication* game);

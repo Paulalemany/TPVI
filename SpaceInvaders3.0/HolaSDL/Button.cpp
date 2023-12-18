@@ -21,6 +21,9 @@ void Button::Render() const
 
 	//dibujamos el boton
 	SDL_RenderFillRect(renderer, &Rect);
+
+	// Restablece el color de fondo (para el SDL_RenderClear)
+	SDL_SetRenderDrawColor(game->GetRenderer(), 0, 0, 0, 225);
 }
 
 void Button::Update()

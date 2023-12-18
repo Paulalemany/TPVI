@@ -24,28 +24,17 @@ void SDLApplication::Render()
 {
 	
 
-	//Dependiendo del estado en el que estemos se hace una cosa u otra
+	//Dependiendo del estado en el que estemos ponemos un fondo u otro
 	switch (_state) {
 	case MENU: {
 		//Ponemos el fondo del menú
 		texturas[FondoMenu]->render();
-		/*Button* boton = new Button(renderer, Point2D<double>(310, 200));
-		boton->Render();*/
 		break;
 	}
 	case PLAY: {
 		//Ponemos el fondo del juego
 		texturas[FondoJuego]->render();
 		break;
-		//Renderizamos todo lo referente al juego
-	}
-	case END: {
-		//Ponemos el fondo del gameOver
-		//Renderizamos todo lo referente al GameOver
-	}
-	case PAUSE: {
-		//Ponemos el fondo del menu de pausa
-		//Renderizamos todo lo referente al menu de pausa
 	}
 	}
 
@@ -94,8 +83,6 @@ SDLApplication::SDLApplication()
 			Render();
 		}
 	}
-
-	
 }
 
 void SDLApplication::Texturas()
@@ -226,7 +213,4 @@ void SDLApplication::HandleEvents()
 
 }
 
-void SDLApplication::ChangeState(int s)
-{
-	_state = s;
-}
+void SDLApplication::ChangeState(int s) { _state = s; }
