@@ -61,7 +61,7 @@ bool Alien::Hit(const SDL_Rect* r, bool o)
 		SceneObject::Hit(r, o);
 		mother->AlienDied();
 		_playState->SetScore(AlienScore - 10 * indice);
-		_playState->hasDied();
+		_playState->hasDied(sceneanc);
 		return true;
 	}
 	return false;

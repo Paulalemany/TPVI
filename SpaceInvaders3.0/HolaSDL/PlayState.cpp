@@ -142,12 +142,17 @@ void PlayState::FireLaser(Point2D<double> p, bool origen)
 
 bool PlayState::Colisiones(Laser* laser)
 {
+	for (SceneObject& a : sceneObjectsList) {
+		if ((&a)->Hit(laser->GetRect(), laser->Origen())) {
+			return true;
+		}
+	}
 	return false;
 }
 
-void PlayState::hasDied()
+void PlayState::hasDied(GameList<SceneObject, true>::anchor i)
 {
-	
+	sceneObjectsList.erase(i);
 }
 
 void PlayState::isGameOver()

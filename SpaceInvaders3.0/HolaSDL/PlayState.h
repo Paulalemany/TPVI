@@ -88,8 +88,7 @@ public:
 
 	bool Colisiones(Laser* laser);
 
-	//void hasDied(list<SceneObject*>::iterator& ite);
-	void hasDied();
+	void hasDied(GameList<SceneObject, true>::anchor i);
 
 	void isGameOver();
 

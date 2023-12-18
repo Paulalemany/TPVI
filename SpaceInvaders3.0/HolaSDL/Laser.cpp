@@ -27,11 +27,9 @@ void Laser::Update()
 	rect.y = pos.LeerPosY();
 
 	//Si colisiona o se salen de la pantalla destruimos el laser
-	if (pos.LeerPosY() < 0 || pos.LeerPosY() > game->GetWinHeight() 
-		|| _playState->Colisiones(this)) {
-		_playState->hasDied();
+	if (_playState->Colisiones(this) || (pos.LeerPosY() < 0 || pos.LeerPosY() > game->GetWinHeight())) {
+		_playState->hasDied(sceneanc);
 	}
-
 }
 
 void Laser::save(std::ostream& out) const
@@ -42,11 +40,12 @@ void Laser::save(std::ostream& out) const
 }
 
 bool Laser::Hit(const SDL_Rect* r, bool o)
-{
+ {
 	if (SDL_HasIntersection(r, GetRect())) {
 		if ((color == blue && !o) || (color == red && o))
 		{
 			SceneObject::Hit(r, o);
+			_playState->hasDied(sceneanc);
 			return true;
 		}
 	}
