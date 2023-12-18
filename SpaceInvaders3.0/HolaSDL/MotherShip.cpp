@@ -38,4 +38,7 @@ void MotherShip::ShouldMove()
 	}
 }
 
-void MotherShip::AlienDied() { alienCount--; }
+void MotherShip::AlienDied() {
+
+	alienCount--; 
+}

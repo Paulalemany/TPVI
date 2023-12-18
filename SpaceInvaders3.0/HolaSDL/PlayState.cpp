@@ -4,11 +4,18 @@ const string PlayState::_playID = "PLAY";
 
 void PlayState::Update()
 {
-	//recorremos la lista de elementos del juego
-	mothership->ShouldMove();
-	for (SceneObject& a : sceneObjectsList) {
-		a.Update();
+	if (mothership->GetAlienCount() == 0) {
+		YouWin();
 	}
+	else {
+		// Si aun quedan aliens seguimos jugando
+		mothership->ShouldMove();
+		//recorremos la lista de elementos del juego
+		for (SceneObject& a : sceneObjectsList) {
+			a.Update();
+		}
+	}
+	
 }
 
 void PlayState::Render()
@@ -29,8 +36,6 @@ void PlayState::Mapas(string file)
 		indice,							//Tipo de alien a crear
 		aux,
 		frame = 0;						//Para la animación de los aliens
-
-	//No se si ahora también se hace con iteradores
 
 	SceneObject* o = nullptr;			//objeto a crear
 #pragma endregion
@@ -105,12 +110,32 @@ void PlayState::Mapas(string file)
 			Mapa >> ScorePlayer;
 		}
 	}
+	//Le decimos a mothership cuantos aliens hay
+	mothership->SetAlienCount(frame);
 
 	Mapa.close();
 }
 
 void PlayState::Save(const string& saveFileName) const
 {
+	//Creamos un archivo donde vayamos a guardar los datos
+	ofstream save(guardadoRoot + saveFileName);
+	//si no se encuentra el archivo
+	if (save.fail())
+		//throw FileNotFoundError("No se puede leer el archivo llamado"s + saveFileName);
+
+	//Guardamos el mothership
+	mothership->save(save);
+
+	//Guardamos los diferentes datos en el archivo
+	for (GameList<SceneObject, true>::forward_iterator i = sceneObjectsList.begin(); i != sceneObjectsList.end(); ++i) {
+		(*i).save(save);
+	}
+
+	//Guardamos los puntos
+	save << "7 " << ScorePlayer << endl;
+
+	save.close();
 }
 
 int PlayState::getRandomRange(int min, int max)
@@ -125,12 +150,17 @@ void PlayState::HandleEvent(const SDL_Event& event)
 
 	if (SDL_SCANCODE_ESCAPE == event.key.keysym.scancode) {
 		//Si el estado es igual a play permitimos entrar al menú de pausa
-		game->GetMachine()->PushState(new PauseState(game));
+		game->GetMachine()->PushState(new PauseState(game, this));
 	}
 }
 
 void PlayState::SetScore(int s)
 {
+	//Sumamos a la puntuación actual los puntos que se consigan
+	ScorePlayer += s;
+
+	//Hacemos que escriban los puntos en consola
+	cout << "Score: " << ScorePlayer << endl;
 }
 
 void PlayState::FireLaser(Point2D<double> p, bool origen)
@@ -159,6 +189,14 @@ void PlayState::isGameOver()
 {
 	gameOver = true;
 	cout << "Has perdido :(";
+	game->ChangeState(0);
+	game->GetMachine()->ReplaceState(new MenuState(game));
+}
+
+void PlayState::YouWin()
+{
+	gameOver = true;
+	cout << "Has ganado!!! :D";
 	game->ChangeState(0);
 	game->GetMachine()->ReplaceState(new MenuState(game));
 }

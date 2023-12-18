@@ -92,6 +92,8 @@ public:
 
 	void isGameOver();
 
+	void YouWin();
+
 #pragma endregion
 
 #pragma region Máquina de estados
