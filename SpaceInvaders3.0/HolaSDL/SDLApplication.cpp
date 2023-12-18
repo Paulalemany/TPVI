@@ -45,6 +45,16 @@ void SDLApplication::Render()
 	SDL_RenderClear(renderer);
 }
 
+SDLApplication::~SDLApplication()
+{
+	delete _gameStateMachine;
+	for (const auto i : texturas) delete i;
+
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+}
+
 //Constructora
 SDLApplication::SDLApplication()
 {

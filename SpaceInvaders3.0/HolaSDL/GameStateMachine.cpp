@@ -1,5 +1,12 @@
 #include "GameStateMachine.h"
 
+GameStateMachine::~GameStateMachine()
+{
+	while (!_pilaGameStates.empty()) {
+		PopState();
+	}
+}
+
 //No estamos comprobando si la pila está llena o vacía en ningún momento, podría dar problemas
 void GameStateMachine::PushState(GameState* _state)
 {

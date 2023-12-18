@@ -19,6 +19,9 @@ protected:
 	list<EventHandler*> listenerList;			//Manejadores de eventos
 
 public:
+	//Destructora
+	virtual ~GameState() = default;
+
 	//Constructora
 	GameState(SDLApplication* g) { game = g; }
 

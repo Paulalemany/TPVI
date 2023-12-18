@@ -63,6 +63,9 @@ public:
 	void Run();
 
 	void Render();
+
+	//Destructora
+	~SDLApplication();
 	
 #pragma region Inicio
 
