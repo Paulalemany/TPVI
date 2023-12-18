@@ -47,6 +47,8 @@ public:
 
 	bool GetShouldMove() { return shouldMove; }
 
+	void SetMove(int i) { dir = i; }
+
 	//Métodos llamados por los aliens para informar al MotherShip
 	void CannotMove() { cannotMove = true; }
 
@@ -60,6 +62,8 @@ public:
 	int GetAlienCount() { return alienCount; }
 
 	int Level() { return level; }
+
+	void SetLevel(int i) { level = i; }
 
 	void SetAlienCount(int c) { alienCount = c; }
 };

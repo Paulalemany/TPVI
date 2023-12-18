@@ -11,7 +11,7 @@ protected:
 	int frame;						//Para decidir que frame de los dos tenemos que renderizar
 	int margenAlien;				//Margen del sprite para el rebote de la pantalla
 	bool bajado = false;			//Comprueba si los aliens han bajado de fila
-	double speed = 20;				//Velocidad a la que se mueve el alien
+	double speed = 5;				//Velocidad a la que se mueve el alien
 
 	int AlienScore = 30;			//Puntos que se suman cuando se mata un alien
 

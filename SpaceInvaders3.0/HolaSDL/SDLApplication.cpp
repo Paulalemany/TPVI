@@ -22,8 +22,7 @@ void SDLApplication::Run()
 
 void SDLApplication::Render()
 {
-	//Limpiamos la pantalla
-	SDL_RenderClear(renderer);
+	
 
 	//Dependiendo del estado en el que estemos se hace una cosa u otra
 	switch (_state) {
@@ -52,6 +51,9 @@ void SDLApplication::Render()
 
 	_gameStateMachine->Render();
 	SDL_RenderPresent(renderer);
+
+	//Limpiamos la pantalla
+	SDL_RenderClear(renderer);
 }
 
 //Constructora
@@ -85,13 +87,9 @@ SDLApplication::SDLApplication()
 
 			//Creamos la máquina de estados
 			_gameStateMachine = new GameStateMachine();
-			_menu = new MenuState(game, renderer);
-			_play = new PlayState(game);
-			//_pause = new PauseState(game);
-			//_end = new EndState(game);
 
 			//Le ponemos de estado inicial el menú de inciio
-			_gameStateMachine->PushState(_menu);
+			_gameStateMachine->PushState(new MenuState(game));
 
 			Render();
 		}
@@ -150,35 +148,6 @@ void SDLApplication::Texturas()
 
 void SDLApplication::Update() {
 
-	switch (_state)
-	{
-	case MENU: {
-		//Hacemos el update correspondiente al menú del juego
-		//_menu->update();
-		//cout << "Estamos en el menu de incicio :)" << endl;
-		break;
-	}
-
-	case PLAY: {
-		//Hacemos el update correspondiente al playState
-		//_play->update();
-		break;
-	}
-
-	case END: {
-		//Hacemos el update correspondiente al endState
-		//_gameOver->update();
-		cout << "Fin de la partida :(" << endl;
-		break;
-	}
-	case PAUSE: {
-		//Hacemos el update correspondiente al pauseState
-		//_pause->update();
-		cout << "Pausita time <3" << endl;
-		break;
-	}
-	}
-
 	_gameStateMachine->Update();
 }
 
@@ -187,13 +156,15 @@ void SDLApplication::HandleEvents()
 	SDL_Event evento;
 
 	while (SDL_PollEvent(&evento) && !exit) {
-		if (evento.type == SDL_QUIT)
+		if (evento.type == SDL_QUIT) {
+
 			exit = true;
+		}
 		else {
 			_gameStateMachine->HandleEvent(evento);
 		}
 	}
-
+	
 //	//Mientras exista el evento y estemos jugando
 //	while (SDL_PollEvent(&evento) && !exit) {
 //
@@ -258,24 +229,4 @@ void SDLApplication::HandleEvents()
 void SDLApplication::ChangeState(int s)
 {
 	_state = s;
-	//Dependiendo del estado en el que vayamos a entrar, hacemos una cosa u otra
-	switch (_state) {
-		//Realmente no se puede (en un principio) volver al menú de inicio pero bueno
-	case MENU: {
-		_gameStateMachine->ReplaceState(_menu);
-		break;
-	}
-	case PLAY: {
-		_gameStateMachine->ReplaceState(_play);
-		break;
-	}
-	case END: {
-		_gameStateMachine->ReplaceState(_end);
-		break;
-	}
-	case PAUSE: {
-		_gameStateMachine->ReplaceState(_pause);
-		break;
-	}
-	}
 }

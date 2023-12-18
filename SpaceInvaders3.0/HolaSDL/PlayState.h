@@ -8,12 +8,15 @@
 #include "MotherShip.h"
 #include "Bunker.h"
 #include "Laser.h"
-#include "Alien.h"
+#include "ShooterAlien.h"
+#include "Ufo.h"
+#include "Cannon.h"
 
 //#include <iostream>
 //#include <filesystem>
 //#include <array>
 #include <fstream>
+#include <random>
 //#include <list>
 //#include <string>
 
@@ -26,7 +29,7 @@ private:
 	static const std::string _playID;					//ID del PlayState
 
 	//Lectura de archivos
-	const string mapa = "..\\mapas\\trinchera.txt",		//Ruta del mapa a utilizar
+	const string mapa = "..\\mapas\\original.txt",		//Ruta del mapa a utilizar
 				 guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
 
 	string savedCode = " ";								//Código de la partida guardada
@@ -49,6 +52,10 @@ private:
 
 	//Creamos el motherShip
 	MotherShip* mothership;
+	//Creamos el canon
+	Cannon* nave;
+
+	mt19937_64 randomGenerator;							//Semilla del random
 
 public:
 
@@ -66,6 +73,9 @@ public:
 	void Mapas(string file);
 
 	void Save(const string& saveFileName) const;
+
+	// genera un int aleatorio con un minimo y un maximo
+	int getRandomRange(int min, int max);
 #pragma endregion
 
 #pragma region Input
@@ -80,6 +90,9 @@ public:
 
 	//void hasDied(list<SceneObject*>::iterator& ite);
 	void hasDied();
+
+	void isGameOver();
+
 #pragma endregion
 
 #pragma region Máquina de estados
@@ -88,9 +101,8 @@ public:
 	bool OnExit() override;
 
 	virtual std::string GetStateID() const { return _playID; }
-#pragma endregion
 
-	
+#pragma endregion
 
 };
 

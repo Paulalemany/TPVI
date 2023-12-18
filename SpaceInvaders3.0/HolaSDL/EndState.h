@@ -7,10 +7,11 @@ private:
 	static const std::string _endID;			//ID del endState
 
 public:
+
+	EndState(SDLApplication* game);
+
 	//Todos los métodos sobrescriben los de la clase padre
-	void Update() override;
 	void Render() override;
-	void HandleEvent(const SDL_Event& event) override;
 
 	bool OnEnter() override;
 	bool OnExit() override;

@@ -9,9 +9,6 @@ class MenuState : public GameState
 private:
 	static const std::string _menuID;			//ID del MenuState
 
-	//Para poder dibujar los botones 
-	SDL_Renderer* renderer;
-
 	//Botones del menú
 	Button* _playButton;
 	Button* _loadButton;
@@ -25,7 +22,7 @@ private:
 public:
 
 	//Contructora del menú con el renderer
-	MenuState(SDLApplication* game, SDL_Renderer* r);
+	MenuState(SDLApplication* game);
 
 	//Todos los métodos sobrescriben los de la clase padre
 	void Render() override;

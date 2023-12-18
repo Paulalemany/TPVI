@@ -7,6 +7,7 @@ void MenuState::Play()
 {
 	//Cargamos el siguiente estado de juego (PlayState)
 	game->ChangeState(1);
+	game->GetMachine()->ReplaceState(new PlayState(game));
 }
 
 void MenuState::Load()
@@ -14,6 +15,7 @@ void MenuState::Load()
 	//Llama al método de change State para cambiar a playState pero tiene que cargar una partida nueva
 	cout << "Cargar nueva partida";
 	game->ChangeState(1);
+	game->GetMachine()->ReplaceState(new PlayState(game));
 }
 
 void MenuState::Exit()
@@ -22,14 +24,12 @@ void MenuState::Exit()
 	game->SetExit(true);
 }
 
-MenuState::MenuState(SDLApplication* g, SDL_Renderer* r) : GameState(g)
+MenuState::MenuState(SDLApplication* g) : GameState(g)
 {
-	renderer = r;
-
 	//Creamos los diferentes botones
-	_playButton = new Button(game, this, renderer, Point2D<double>(310, 150));
-	_loadButton = new Button(game, this, renderer, Point2D<double>(200, 240));
-	_exitButton = new Button(game, this, renderer, Point2D<double>(420, 240));
+	_playButton = new Button(game, this, game->GetRenderer(), Point2D<double>(310, 150));
+	_loadButton = new Button(game, this, game->GetRenderer(), Point2D<double>(200, 240));
+	_exitButton = new Button(game, this, game->GetRenderer(), Point2D<double>(420, 240));
 
 	//Añadimos los botones a la lista de objetos
 	//(por ahora solo usaremos el playButton por lo aue voy a comentar el resto)
@@ -47,7 +47,6 @@ MenuState::MenuState(SDLApplication* g, SDL_Renderer* r) : GameState(g)
 	_loadButton->Connect([this]() {Load(); });
 	_exitButton->Connect([this]() {Exit(); });
 }
-
 
 void MenuState::Render()
 {

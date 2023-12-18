@@ -46,12 +46,6 @@ private:
 
 	//Creamos un puntero a la máquina de estados dentro del game
 	GameStateMachine* _gameStateMachine;
-
-	//Creamos los estados
-	MenuState* _menu; 
-	PlayState* _play;
-	PauseState* _pause;
-	EndState* _end;
 	
 #pragma endregion
 
@@ -86,6 +80,7 @@ public:
 
 	void ChangeState(int s);
 
+
 #pragma region getters y Setters
 
 	void SetExit(bool y) { exit = y; }
@@ -95,6 +90,10 @@ public:
 	int GetWinWidth() { return winWidth; }
 
 	int GetWinHeight() { return winHeight; }
+
+	SDL_Renderer* GetRenderer() { return renderer; }
+
+	GameStateMachine* GetMachine() { return _gameStateMachine; }
 
 #pragma endregion
 

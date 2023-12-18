@@ -2,18 +2,15 @@
 
 const string EndState::_endID = "END";
 
-void EndState::Update()
+EndState::EndState(SDLApplication* game)
+	: GameState(game)
 {
-	// nothing for now
+
 }
 
 void EndState::Render()
 {
 	// nothing for now
-}
-
-void EndState::HandleEvent(const SDL_Event& event)
-{
 }
 
 bool EndState::OnEnter()
