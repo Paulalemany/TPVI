@@ -50,8 +50,8 @@ private:
 #pragma endregion
 
 	//Texturas
-	static const int NUM_TEXTURES = 6;											//Numero de texturas usadas en el juego
-	enum textures {FondoMenu, FondoJuego, Nave, Bunkers, Aliens, UFO};			//Enum de texturas
+	static const int NUM_TEXTURES = 9;											//Numero de texturas usadas en el juego
+	enum textures {FondoMenu, FondoJuego, Nave, Bunkers, Aliens, UFO, BOMB, SHIEDL, S_REWARD};			//Enum de texturas
 	array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 
 	//Booleano de salida

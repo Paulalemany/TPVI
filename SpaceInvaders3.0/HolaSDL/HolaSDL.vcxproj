@@ -76,6 +76,7 @@
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="MotherShip.cpp" />
+    <ClCompile Include="Reward.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="SDLApplication.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="MotherShip.h" />
+    <ClInclude Include="Reward.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SDLApplication.h" />
     <ClInclude Include="gameList.h" />

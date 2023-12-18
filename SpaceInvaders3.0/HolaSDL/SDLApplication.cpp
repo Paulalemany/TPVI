@@ -89,6 +89,7 @@ void SDLApplication::Texturas()
 {
 	//Raiz común de todas las texturas
 	string textureRoot = "..\\images\\";
+	string objectRoot = "..\\objetos\\";
 	string textura;
 
 	//Struct con los datos de cada imagen a texturizar
@@ -111,6 +112,12 @@ void SDLApplication::Texturas()
 
 	Imagen Ufo{ textureRoot + "ufo.png", 1, 2 };
 
+	Imagen Bomb{ objectRoot + "bomb.png", 1, 1 };
+
+	Imagen Shield{ objectRoot + "shield.png", 1, 1 };
+
+	Imagen S_Reward{ objectRoot + "shield_reward.png", 1, 1 };
+
 	//Creamos un array que contenga todas las imagenes (Para poder automatizarlo)
 	array <Imagen, NUM_TEXTURES> Imagenes;
 	Imagenes[0] = FondoMenu;
@@ -119,6 +126,9 @@ void SDLApplication::Texturas()
 	Imagenes[3] = Bunker;
 	Imagenes[4] = Alien;
 	Imagenes[5] = Ufo;
+	Imagenes[6] = Bomb;
+	Imagenes[7] = Shield;
+	Imagenes[8] = S_Reward;
 
 	//Hacemos un array con las texturas
 	for (int i = 0; i < NUM_TEXTURES; i++) {
