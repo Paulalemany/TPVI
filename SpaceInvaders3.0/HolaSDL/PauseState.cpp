@@ -23,10 +23,19 @@ void PauseState::Save()
 
 void PauseState::Load()
 {
-	cout << "Cargando partida guardada" << endl;
-	//Necesitamos pasarle el archivo de la partida guardada
-	//También hay que eliminar el anterior
-	game->GetMachine()->ReplaceState(new PlayState(game));
+	//Llama al método de change State para cambiar a playState pero tiene que cargar una partida nueva
+	cout << "Escriba el numero de partida que desea cargar: " << endl;
+
+	int k;
+	cin >> k;
+	if (k >= 0) {
+		string fileName = "..\\mapas\\saved" + to_string(k) + ".txt";
+		game->ChangeState(1);
+		game->GetMachine()->ReplaceState(new PlayState(game, fileName));
+	}
+	else {
+		cout << "El caracter no es válido, se reaunuda la partida" << endl;
+	}
 }
 
 void PauseState::Home()

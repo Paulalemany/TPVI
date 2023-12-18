@@ -41,7 +41,7 @@ void PlayState::Mapas(string file)
 #pragma endregion
 
 	//Abrimos el archivo a leer
-	ifstream Mapa(mapa);
+	ifstream Mapa(file);
 
 	//Si no encuentra el archivo lanzamos una excepción
 	if (Mapa.fail()) {
@@ -64,14 +64,14 @@ void PlayState::Mapas(string file)
 		}
 		else if (elem == laser) {
 			Mapa >> aux;
-			o = new Laser();
+			o = new Laser(game, this, pos, nullptr, 1, game->GetRenderer(), aux);
 		}
 		else if (elem == alien || elem == shooterAlien) {
 			Mapa >> indice;
 			if (elem == shooterAlien) {
 				//Lo utilizamos para el coolDown
-				Mapa >> elem;
-				o = new ShooterAlien(game, this, pos, game->GetTexture(4), mothership, 1, indice, frame, elem);
+				Mapa >> aux;
+				o = new ShooterAlien(game, this, pos, game->GetTexture(4), mothership, 1, indice, frame, aux);
 			}
 			else {
 				o = new Alien(game, this, pos, game->GetTexture(4), mothership, 1, indice, frame);
@@ -89,8 +89,8 @@ void PlayState::Mapas(string file)
 			//Lo usamos para guardar las vidas de la nave
 			Mapa >> indice;
 			//Lo usamos para guardar el cooldown
-			Mapa >> elem;
-			nave = new Cannon(game, this, pos, game->GetTexture(2), indice, elem);
+			Mapa >> aux;
+			nave = new Cannon(game, this, pos, game->GetTexture(2), indice, aux);
 			o = nave;
 		}
 		sceneObjectsList.push_back(o);
@@ -204,8 +204,6 @@ void PlayState::YouWin()
 bool PlayState::OnEnter()
 {
 	cout << "Entrando en PlayState" << endl;
-	//Cargamos el mapa (Por ahora que no tenemos menú de pausa lo hacemos aquí pero a lo mejor hay que cambiarlo
-	Mapas(mapa);
 	return true;
 }
 

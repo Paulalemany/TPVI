@@ -19,12 +19,12 @@ public:
 	Laser() : SceneObject() {}
 
 	//Constructora 
-	Laser(SDLApplication* g, PlayState* j, Point2D<double> p, Texture* t, int vida, SDL_Renderer* render, bool origen)
+	Laser(SDLApplication* g, PlayState* j, Point2D<double> p, Texture* t, int vida, SDL_Renderer* render, int origen)
 		: SceneObject(g, j, p, t, vida) {
 
 		renderer = render;
 		vel = Vector2D<double>(0, v);
-		if (origen) { color = blue; }
+		color = origen;
 	}
 
 	void Render() const override;

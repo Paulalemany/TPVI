@@ -27,7 +27,8 @@ void Laser::Update()
 	rect.y = pos.LeerPosY();
 
 	//Si colisiona o se salen de la pantalla destruimos el laser
-	if (_playState->Colisiones(this) || (pos.LeerPosY() < 0 || pos.LeerPosY() > game->GetWinHeight())) {
+	if (_playState->Colisiones(this) 
+		|| (pos.LeerPosY() < 0 )){
 		_playState->hasDied(sceneanc);
 	}
 }

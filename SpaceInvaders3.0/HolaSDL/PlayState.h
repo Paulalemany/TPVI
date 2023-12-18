@@ -60,9 +60,10 @@ private:
 public:
 
 	//Constructora
-	PlayState(SDLApplication* g): GameState(g) 
+	PlayState(SDLApplication* g, string file): GameState(g) 
 	{
 		mothership = new MotherShip(game, this);
+		Mapas(file);
 	};
 
 	void Update() override;

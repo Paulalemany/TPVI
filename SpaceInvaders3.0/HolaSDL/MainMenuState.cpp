@@ -7,15 +7,25 @@ void MenuState::Play()
 {
 	//Cargamos el siguiente estado de juego (PlayState)
 	game->ChangeState(1);
-	game->GetMachine()->ReplaceState(new PlayState(game));
+	game->GetMachine()->ReplaceState(new PlayState(game, "..\\mapas\\original.txt"));
 }
 
 void MenuState::Load()
 {
 	//Llama al método de change State para cambiar a playState pero tiene que cargar una partida nueva
-	cout << "Cargar nueva partida";
-	game->ChangeState(1);
-	game->GetMachine()->ReplaceState(new PlayState(game));
+	cout << "Escriba el numero de partida que desea cargar: " << endl;
+
+	int k;
+	cin >> k;
+	if (k >= 0) {
+		string fileName = "..\\mapas\\saved" + to_string(k) + ".txt";
+		game->ChangeState(1);
+		game->GetMachine()->ReplaceState(new PlayState(game, fileName));
+	}
+	else {
+		cout << "El caracter no es válido, se reaunuda la partida" << endl;
+	}
+	
 }
 
 void MenuState::Exit()
