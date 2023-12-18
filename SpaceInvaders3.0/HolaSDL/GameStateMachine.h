@@ -10,6 +10,8 @@ private:
 	stack <GameState*> _pilaGameStates;
 
 public:
+	//Destructora
+	~GameStateMachine();
 	//Métodos para intercambiar estados
 	void PushState(GameState* pState);				//Inserta un estado
 

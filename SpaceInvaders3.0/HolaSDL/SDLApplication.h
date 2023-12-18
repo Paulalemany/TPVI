@@ -12,6 +12,10 @@
 #include "texture.h"
 #include <array>
 
+#include "FileNotFoundError.h"
+#include "SDLError.h"
+#include "FileFormatError.h" 
+
 class SDLApplication
 {
 private:
