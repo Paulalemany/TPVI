@@ -1,5 +1,10 @@
 #pragma once
 #include "SceneObject.h"
+#include "SDLApplication.h"
+#include <functional>
+
+// Para hacer el callback
+using callBack = std::function<void(void)>;
 
 class Reward : public SceneObject
 {
@@ -7,6 +12,12 @@ private:
 
 	Vector2D<double> vel;				//Vector velocidad del objeto
 	double v = 5;						//Velocidad del objeto al caer
+
+	//Lista de funciones para el callback
+	list<callBack> Objectscallbacks;
+
+	//Evento emitido por el objeto
+	void emit() const;
 
 public:
 	//Constructora vacía
@@ -26,5 +37,8 @@ public:
 	void save(std::ostream& out) const override;
 
 	bool Hit(const SDL_Rect* r, bool o) override;
+
+	//Asocia los callBacks
+	void Connect(callBack cb);
 };
 

@@ -15,6 +15,8 @@ private:
 	double speed = 2;				//Velocidad a la que se mueve el jugador
 	int margenCannon;				//Ancho del sprite
 
+	bool invencible = false;		//Booleano para el escudo
+
 public:
 
 	//Constructora vacía
@@ -42,5 +44,7 @@ public:
 	bool Hit(const SDL_Rect* r, bool o) override;
 
 	void HandleEvent(SDL_Event evento);
+
+	void ImInvencible() { invencible = true; }
 };
 

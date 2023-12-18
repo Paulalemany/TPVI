@@ -11,16 +11,10 @@
 #include "ShooterAlien.h"
 #include "Ufo.h"
 #include "Cannon.h"
+#include "Reward.h"
 
-//#include <iostream>
-//#include <filesystem>
-//#include <array>
 #include <fstream>
 #include <random>
-//#include <list>
-//#include <string>
-
-
 
 //Todos los estados heredan de la clase base "GameState"
 class PlayState : public GameState
@@ -94,6 +88,12 @@ public:
 	void isGameOver();
 
 	void YouWin();
+
+	bool MayGrantReward(SDL_Rect r) const;
+
+	void DropReward(Point2D<double> pos);
+
+	void ShieldReward();
 
 #pragma endregion
 

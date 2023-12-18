@@ -59,6 +59,12 @@ bool Ufo::Hit(const SDL_Rect* r, bool o)
 	if (!o && SDL_HasIntersection(r, GetRect())) {
 		estado = destruido;
 		_playState->SetScore(UFOScore);
+
+		// gestion de dropeo de reward
+		rewardProb = _playState->getRandomRange(minProbReward, maxProbReward);
+		if (rewardProb == 1) {
+			_playState->DropReward(pos);
+		}
 		return true;
 	}
 	return false;

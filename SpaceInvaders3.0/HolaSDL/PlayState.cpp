@@ -201,6 +201,29 @@ void PlayState::YouWin()
 	game->GetMachine()->ReplaceState(new MenuState(game));
 }
 
+bool PlayState::MayGrantReward(SDL_Rect r) const
+{
+	return SDL_HasIntersection(&r, nave->GetRect());
+}
+
+void PlayState::DropReward(Point2D<double> pos)
+{
+	//Creamos el premio
+	Reward* premio = new Reward(game, this, pos, game->GetTexture(8), 1);
+
+	//Le ponemos el callback
+	premio->Connect([this]() {ShieldReward(); });
+
+	//Lo añdimos a la lista de objetos
+	sceneObjectsList.push_back(premio);
+}
+
+void PlayState::ShieldReward()
+{
+	cout << "Invencibleeee";
+	nave->ImInvencible();
+}
+
 bool PlayState::OnEnter()
 {
 	cout << "Entrando en PlayState" << endl;

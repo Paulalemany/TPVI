@@ -33,11 +33,18 @@ bool Cannon::Hit(const SDL_Rect* r, bool o) {
 	//Si dispara un alien y se chocan
 	if (o && SDL_HasIntersection(r, GetRect()))
 	{
-		SceneObject::Hit(r,o);
+		if (!invencible) {
+			SceneObject::Hit(r, o);
 
-		if (vida == 0) {
-			//Fin de la partida
-			_playState->isGameOver();
+			if (vida == 0) {
+				//Fin de la partida
+				_playState->isGameOver();
+			}
+		}
+		else {
+			//La invencibilidad dura un golpe
+			invencible = false;
+			cout << "No invencible";
 		}
 		return true;
 	}

@@ -14,6 +14,10 @@ private:
 	const int speed = 3,
 	 UFOScore = 100;				//Puntos que se consiguen cuando le das al ufo
 
+	int rewardProb;					//Probabilidad de que te caiga un objeto
+	int minProbReward = 1,
+		maxProbReward = 1;
+
 public:
 	//Constructora vacia
 	Ufo() : SceneObject() {}
