@@ -12,6 +12,7 @@
 #include "texture.h"
 #include <array>
 
+#include "InvadersError.h"
 #include "FileNotFoundError.h"
 #include "SDLError.h"
 #include "FileFormatError.h" 
