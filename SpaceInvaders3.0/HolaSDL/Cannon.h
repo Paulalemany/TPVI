@@ -1,7 +1,9 @@
 #pragma once
 #include "SceneObject.h"
+#include "EventHandler.h"
 
-class Cannon : public SceneObject
+class Cannon : public SceneObject,
+	public EventHandler
 {
 private:
 	enum dir { still, left, right };
@@ -43,7 +45,7 @@ public:
 
 	bool Hit(const SDL_Rect* r, bool o) override;
 
-	void HandleEvent(SDL_Event evento);
+	void HandleEvent(const SDL_Event& evento) override;
 
 	void ImInvencible() { invencible = true; }
 };

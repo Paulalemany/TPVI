@@ -32,6 +32,6 @@ public:
 
 	bool Hit(const SDL_Rect* r, bool o) override;
 
-	int Origen() { return color; }
+	const int Origen() { return color; }
 };
 

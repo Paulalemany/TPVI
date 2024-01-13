@@ -21,8 +21,9 @@ void MotherShip::ShouldMove()
 			cannotMove = false;
 			//Vuelve dir a la dirección que tenía al bajar y la cambia
 			dir = (dir / down) * -1;
+
 			//A lo mejor es demasiado aumento
-			level += 0.5;
+			level += aumentoLevel;
 		}
 		//Si no se pueden mover hacemos que vaya hacia abajo
 		if (cannotMove) {

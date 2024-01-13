@@ -58,7 +58,7 @@ void Cannon::Render() const
 	textura->renderFrame(rect, textura->getNumRows() - 1, textura->getNumColumns() - 1);
 }
 
-void Cannon::HandleEvent(SDL_Event evento)
+void Cannon::HandleEvent(const SDL_Event& evento)
 {
 	//Cuando se pulsa la tecla
 	if (SDL_KEYDOWN == evento.type) {

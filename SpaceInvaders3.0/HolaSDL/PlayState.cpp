@@ -60,7 +60,7 @@ void PlayState::Mapas(string file)
 		if (elem == bunker) {
 			//para leer las vidas
 			Mapa >> aux;
-			o = new Bunker(game, this, pos, game->GetTexture(3), aux);
+			o = new Bunker(game, this, pos, game->GetTexture(BUNKERS), aux);
 		}
 		else if (elem == laser) {
 			Mapa >> aux;
@@ -71,10 +71,10 @@ void PlayState::Mapas(string file)
 			if (elem == shooterAlien) {
 				//Lo utilizamos para el coolDown
 				Mapa >> aux;
-				o = new ShooterAlien(game, this, pos, game->GetTexture(4), mothership, 1, indice, frame, aux);
+				o = new ShooterAlien(game, this, pos, game->GetTexture(ALIENS), mothership, 1, indice, frame, aux);
 			}
 			else {
-				o = new Alien(game, this, pos, game->GetTexture(4), mothership, 1, indice, frame);
+				o = new Alien(game, this, pos, game->GetTexture(ALIENS), mothership, 1, indice, frame);
 			}
 			frame++;
 		}
@@ -83,15 +83,17 @@ void PlayState::Mapas(string file)
 			Mapa >> indice;
 			//Usamos aux para guardar la espera
 			Mapa >> aux;
-			o = new Ufo(game, this, pos, game->GetTexture(5), 1, indice, aux);
+			o = new Ufo(game, this, pos, game->GetTexture(UFO), 1, indice, aux);
 		}
 		else if (elem == cannon) {
 			//Lo usamos para guardar las vidas de la nave
 			Mapa >> indice;
 			//Lo usamos para guardar el cooldown
 			Mapa >> aux;
-			nave = new Cannon(game, this, pos, game->GetTexture(2), indice, aux);
+			nave = new Cannon(game, this, pos, game->GetTexture(NAVE), indice, aux);
 			o = nave;
+			//Añadimos el canon a los oyentes de eventos
+			AddEventListener(nave);
 		}
 		sceneObjectsList.push_back(o);
 
@@ -145,8 +147,8 @@ int PlayState::getRandomRange(int min, int max)
 
 void PlayState::HandleEvent(const SDL_Event& event)
 {
-	//Input de la nave
-	nave->HandleEvent(event);
+	//Llamamos a los eventos adscritos al gameState
+	GameState::HandleEvent(event);
 
 	if (SDL_SCANCODE_ESCAPE == event.key.keysym.scancode) {
 		//Si el estado es igual a play permitimos entrar al menú de pausa

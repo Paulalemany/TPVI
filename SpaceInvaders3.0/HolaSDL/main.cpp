@@ -12,12 +12,13 @@ using uint = unsigned int;
 
 int main(int argc, char* argv[])
 {
+	const int delay = 500;
 	try {
 		//Creamos el juego
 		SDLApplication game;
 		//Bucle principal
 		game.Run();
-		SDL_Delay(500);
+		SDL_Delay(delay);
 	}
 	catch (FileNotFoundError& fileError)
 	{

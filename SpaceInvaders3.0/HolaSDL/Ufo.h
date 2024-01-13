@@ -18,6 +18,10 @@ private:
 	int minProbReward = 1,
 		maxProbReward = 4;
 
+	//Posición original del ufo
+	const int originalX = 800,
+		originalY = 10;
+
 public:
 	//Constructora vacia
 	Ufo() : SceneObject() {}

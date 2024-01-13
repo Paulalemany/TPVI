@@ -36,7 +36,7 @@ public:
 	virtual bool OnExit() = 0;
 
 	//Metodos para añadir 
-	void AddEventListener(EventHandler* lis);
+	virtual void AddEventListener(EventHandler* lis);
 	void AddObject(GameObject* obj);
 
 	//Getter del ID del estado en el que esté

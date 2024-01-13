@@ -14,6 +14,8 @@ private:
 	const int laserW = 5;				//Ancho del laser
 	const int laserH = 25;				//largo del laser
 
+	const int opacidad = 255;
+
 public:
 	//Constructora vacía
 	Laser() : SceneObject() {}
@@ -35,6 +37,6 @@ public:
 
 	bool Hit(const SDL_Rect* r, bool o) override;
 
-	int Origen() { return color; }
+	const int Origen() { return color; }
 };
 

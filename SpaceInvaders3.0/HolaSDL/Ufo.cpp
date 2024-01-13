@@ -39,7 +39,7 @@ void Ufo::Update()
 
 		//Actualizamos el cooldown
 		cont = _playState->getRandomRange(minCoolDown, maxCoolDown);
-		pos = Vector2D<double>(800, 10);
+		pos = Vector2D<double>(originalX, originalY);
 		rect.x = pos.LeerPosX();
 		rect.y = pos.LeerPosY();
 	}

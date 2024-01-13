@@ -14,6 +14,13 @@ private:
 	Button* _loadButton;						//Boton para cargar partida
 	Button* _homeButton;						//Para volver al menu principal
 	Button* _returnButton;						//Para reanudar la partida
+
+	//Posiciones
+
+	const int lineaA = 125,
+		lineaB = 500,
+		lineaI = 150,
+		lineaD = 240;
 	
 	//callback del boton
 	void Save();

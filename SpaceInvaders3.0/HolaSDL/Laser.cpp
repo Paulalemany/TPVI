@@ -5,10 +5,10 @@ void Laser::Render() const
 {
 	//Dependiendo de quien dispare cambia el color
 	if (color == blue) {	//Dispara un alien
-		SDL_SetRenderDrawColor(renderer, 160, 252, 233, 255);		//VerdeAgua
+		SDL_SetRenderDrawColor(renderer, 160, 252, 233, opacidad);		//VerdeAgua
 	}
 	else if (color == red) {	//Dispara el jugador
-		SDL_SetRenderDrawColor(renderer, 252, 160, 217, 255);		//Rosa
+		SDL_SetRenderDrawColor(renderer, 252, 160, 217, opacidad);		//Rosa
 	}
 	//dibujamos el laser
 	SDL_RenderFillRect(renderer, &rect);

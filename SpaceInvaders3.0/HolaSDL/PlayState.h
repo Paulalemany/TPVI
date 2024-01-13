@@ -37,11 +37,14 @@ private:
 	int ScorePlayer = 0;
 
 	//Enum de los elementos
-	enum elem {
+	const enum elem {
 		cannon, alien, shooterAlien, mother,				
 		bunker, ufo, laser, puntos
 	};
 
+	const enum texture {
+
+	};
 	//Lista de elementos del juego
 	GameList<SceneObject, true> sceneObjectsList;		//Lista de objetos del juego
 

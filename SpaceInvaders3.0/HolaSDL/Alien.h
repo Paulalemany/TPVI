@@ -42,9 +42,8 @@ public:
 
 	bool Hit(const SDL_Rect* r, bool o) override;
 
-	//Tal vez habría que ponerlo también en el SceneObject en vez de aquí
-	int MargenAlien() { return margenAlien; }
+	const int MargenAlien() { return margenAlien; }
 
-	bool Bajado() { return bajado; }
+	const bool Bajado() { return bajado; }
 };
 

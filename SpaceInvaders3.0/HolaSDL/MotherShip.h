@@ -9,6 +9,7 @@ class MotherShip : public GameObject
 	int dir = left;									//Dirección que siguen los aliens
 	int alienCount = 0;								//Contador de aliens
 	double level = 1;								//Nivel en el que se encuentran los aliens (Altura)
+	const double aumentoLevel = 0.5;
 	int alienTimer = ALIENS_UPDATE;					//Temporizador para el movimiento de los aliens
 
 	bool shouldMove = false;
@@ -40,12 +41,12 @@ public:
 	void save(std::ostream& out) const override;
 
 	//Define la dirección del mov que deben seguir los aliens
-	int GetDirection() { return dir; }
+	const int GetDirection() { return dir; }
 
 	//Indica si los aliens deben moverse en el siguiente ciclo o no
 	void ShouldMove();
 
-	bool GetShouldMove() { return shouldMove; }
+	const bool GetShouldMove() { return shouldMove; }
 
 	void SetMove(int i) { dir = i; }
 
@@ -57,11 +58,11 @@ public:
 	void AlienLanded() { alienLanded = true; }
 
 	//Métodos para informar al juego
-	bool HaveLanded() { return alienLanded; }
+	const bool HaveLanded() { return alienLanded; }
 
-	int GetAlienCount() { return alienCount; }
+	const int GetAlienCount() { return alienCount; }
 
-	int Level() { return level; }
+	const int Level() { return level; }
 
 	void SetLevel(int i) { level = i; }
 

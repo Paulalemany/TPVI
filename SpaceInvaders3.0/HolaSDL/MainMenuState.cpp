@@ -37,6 +37,7 @@ void MenuState::Exit()
 MenuState::MenuState(SDLApplication* g) : GameState(g)
 {
 	//Creamos los diferentes botones
+	//Podría crear constantes pero no lo uso tanto como para volverlo una constante creo
 	_playButton = new Button(game, this, game->GetRenderer(), Point2D<double>(310, 150));
 	_loadButton = new Button(game, this, game->GetRenderer(), Point2D<double>(200, 240));
 	_exitButton = new Button(game, this, game->GetRenderer(), Point2D<double>(420, 240));

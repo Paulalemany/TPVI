@@ -55,7 +55,7 @@ public:
 	void save(std::ostream& out) const override;
 
 	//Getters para las coordenadas
-	int LeerPosX() { return pos.LeerPosX(); }
+	const int LeerPosX() { return pos.LeerPosX(); }
 
 	//Devuelve un puntero al rect del objeto
 	const SDL_Rect* GetRect() const { return &rect; }

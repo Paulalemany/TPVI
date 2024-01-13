@@ -28,12 +28,12 @@ void SDLApplication::Render()
 	switch (_state) {
 	case MENU: {
 		//Ponemos el fondo del menú
-		texturas[FondoMenu]->render();
+		texturas[FONDOMENU]->render();
 		break;
 	}
 	case PLAY: {
 		//Ponemos el fondo del juego
-		texturas[FondoJuego]->render();
+		texturas[FONDOJUEGO]->render();
 		break;
 	}
 	}
@@ -110,35 +110,35 @@ void SDLApplication::Texturas()
 	};
 
 	//Imagenes a texturizar
-	Imagen FondoMenu{ "..\\fondos\\mainMenu.png", 1, 1 };
+	Imagen _FondoMenu{ "..\\fondos\\mainMenu.png", 1, 1 };
 
-	Imagen FondoJuego{ textureRoot + "stars.png", 1, 1 };
+	Imagen _FondoJuego{ textureRoot + "stars.png", 1, 1 };
 
-	Imagen Nave{ textureRoot + "spaceship.png", 1, 1 };
+	Imagen _Nave{ textureRoot + "spaceship.png", 1, 1 };
 
-	Imagen Bunker{ textureRoot + "bunker.png", 1, 4 };
+	Imagen _Bunker{ textureRoot + "bunker.png", 1, 4 };
 
-	Imagen Alien{ textureRoot + "aliens.png", 3, 2 };
+	Imagen _Alien{ textureRoot + "aliens.png", 3, 2 };
 
-	Imagen Ufo{ textureRoot + "ufo.png", 1, 2 };
+	Imagen _Ufo{ textureRoot + "ufo.png", 1, 2 };
 
-	Imagen Bomb{ objectRoot + "bomb.png", 1, 1 };
+	Imagen _Bomb{ objectRoot + "bomb.png", 1, 1 };
 
-	Imagen Shield{ objectRoot + "shield.png", 1, 1 };
+	Imagen _Shield{ objectRoot + "shield.png", 1, 1 };
 
-	Imagen S_Reward{ objectRoot + "shield_reward.png", 1, 1 };
+	Imagen _S_Reward{ objectRoot + "shield_reward.png", 1, 1 };
 
 	//Creamos un array que contenga todas las imagenes (Para poder automatizarlo)
 	array <Imagen, NUM_TEXTURES> Imagenes;
-	Imagenes[0] = FondoMenu;
-	Imagenes[1] = FondoJuego;
-	Imagenes[2] = Nave;
-	Imagenes[3] = Bunker;
-	Imagenes[4] = Alien;
-	Imagenes[5] = Ufo;
-	Imagenes[6] = Bomb;
-	Imagenes[7] = Shield;
-	Imagenes[8] = S_Reward;
+	Imagenes[FONDOMENU] = _FondoMenu;
+	Imagenes[FONDOJUEGO] = _FondoJuego;
+	Imagenes[NAVE] = _Nave;
+	Imagenes[BUNKERS] = _Bunker;
+	Imagenes[ALIENS] = _Alien;
+	Imagenes[UFO] = _Ufo;
+	Imagenes[BOMB] = _Bomb;
+	Imagenes[SHIELD] = _Shield;
+	Imagenes[S_REWARD] = _S_Reward;
 
 	//Hacemos un array con las texturas
 	for (int i = 0; i < NUM_TEXTURES; i++) {

@@ -24,6 +24,7 @@ private:
 	SDL_Renderer* renderer = nullptr;	//Puntero al renderer
 	const int buttonW = 175;			//Ancho del boton
 	const int buttonH = 50;				//largo del boton
+	const int opacidad = 255;			//Opacidad completa
 	SDL_Rect Rect;						//Rect del boton
 
 	//Animación del boton

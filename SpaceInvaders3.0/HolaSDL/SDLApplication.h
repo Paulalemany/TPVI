@@ -17,6 +17,8 @@
 #include "SDLError.h"
 #include "FileFormatError.h" 
 
+enum textures { FONDOMENU, FONDOJUEGO, NAVE, BUNKERS, ALIENS, UFO, BOMB, SHIELD, S_REWARD };			//Enum de texturas
+
 class SDLApplication
 {
 private:
@@ -56,7 +58,7 @@ private:
 
 	//Texturas
 	static const int NUM_TEXTURES = 9;											//Numero de texturas usadas en el juego
-	enum textures {FondoMenu, FondoJuego, Nave, Bunkers, Aliens, UFO, BOMB, SHIEDL, S_REWARD};			//Enum de texturas
+	
 	array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 
 	//Booleano de salida
@@ -93,12 +95,14 @@ public:
 
 	void SetExit(bool y) { exit = y; }
 
+	//No puede ser constante porque cada vez que lo llamas devuelve una textura distinta
 	Texture* GetTexture(int i) { return texturas[i]; }
 
-	int GetWinWidth() { return winWidth; }
+	const int GetWinWidth() { return winWidth; }
 
-	int GetWinHeight() { return winHeight; }
+	const int GetWinHeight() { return winHeight; }
 
+	//Al ponerle las texturas al boton no hará falta pasarle el renderer
 	SDL_Renderer* GetRenderer() { return renderer; }
 
 	GameStateMachine* GetMachine() { return _gameStateMachine; }
