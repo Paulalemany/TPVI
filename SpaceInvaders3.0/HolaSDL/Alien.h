@@ -14,6 +14,7 @@ protected:
 	double speed = 5;				//Velocidad a la que se mueve el alien
 
 	int AlienScore = 30;			//Puntos que se suman cuando se mata un alien
+	const int minScore = 10;
 
 public:
 	//Constructora vacía

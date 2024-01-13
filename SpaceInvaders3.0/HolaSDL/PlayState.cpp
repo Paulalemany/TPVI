@@ -211,7 +211,7 @@ bool PlayState::MayGrantReward(SDL_Rect r) const
 void PlayState::DropReward(Point2D<double> pos)
 {
 	//Creamos el premio
-	Reward* premio = new Reward(game, this, pos, game->GetTexture(8), 1);
+	Reward* premio = new Reward(game, this, pos, game->GetTexture(S_REWARD), 1);
 
 	//Le ponemos el callback
 	premio->Connect([this]() {ShieldReward(); });
@@ -229,7 +229,7 @@ void PlayState::ShieldReward()
 void PlayState::FireBomb(Point2D<double> pos)
 {
 	//Crea la bomba
-	Bomb* bomba = new Bomb(game, this, pos, game->GetTexture(6), 2);
+	Bomb* bomba = new Bomb(game, this, pos, game->GetTexture(BOMB), 2);
 
 	sceneObjectsList.push_back(bomba);
 }

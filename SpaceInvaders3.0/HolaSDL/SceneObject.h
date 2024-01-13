@@ -14,6 +14,10 @@ protected:
 
 	PlayState* _playState = nullptr;			//Puntero al playState
 
+	//Tamaño laser
+	const int anchoLaser = 5,
+		largoLaser = 25;
+
 	//anchor
 	GameList<SceneObject, true>::anchor sceneanc = nullptr;
 
@@ -41,8 +45,8 @@ public:
 			rect.h = textura->getFrameHeight();
 		}
 		else {	//Si no tiene textura significa que es un laser
-			rect.w = 5;
-			rect.h = 25;
+			rect.w = anchoLaser;
+			rect.h = largoLaser;
 		}
 		
 		//El objeto se dibuja en su posición

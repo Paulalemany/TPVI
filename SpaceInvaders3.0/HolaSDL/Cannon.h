@@ -8,23 +8,27 @@ class Cannon : public SceneObject,
 private:
 	enum dir { still, left, right };
 
-	int maxCooldown = 7;			//Cooldown 
+	const int maxCooldown = 7;		//Cooldown 
 	int cooldown;					//Contador del cooldown
 
 	int maxVidas;					//Vidas máximas del jugador
 
 	int dirC = still;				//Direccion en la que se mueve el jugador
-	double speed = 2;				//Velocidad a la que se mueve el jugador
+	const double speed = 2;			//Velocidad a la que se mueve el jugador
 	int margenCannon;				//Ancho del sprite
 
 	bool invencible = false;		//Booleano para el escudo
+
+	const int derecha = 2,
+		izquierda = 1;
+	const int _maxVidas = 3;
 
 public:
 
 	//Constructora vacía
 	Cannon() : SceneObject()
 	{
-		maxVidas = 3;
+		maxVidas = _maxVidas;
 	}
 
 	//Constructora 

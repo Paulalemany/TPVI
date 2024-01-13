@@ -4,6 +4,9 @@
 
 class Bunker: public SceneObject
 {
+private:
+	const int maxVida = 4;
+
 public:
 	Bunker(SDLApplication* g, PlayState* ps, Point2D<double> p, Texture* t, int v)
 		: SceneObject(g, ps, p, t, v) {} ;

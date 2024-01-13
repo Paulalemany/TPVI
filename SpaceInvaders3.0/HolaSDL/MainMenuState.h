@@ -14,6 +14,9 @@ private:
 	Button* _loadButton;
 	Button* _exitButton;
 
+	//Posición botones
+	const int columna = 240;
+
 	//Callbacks para los botones
 	void Play();
 	void Load();

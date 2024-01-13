@@ -4,7 +4,7 @@
 
 void Bunker::Render() const
 {
-	textura->renderFrame(rect, textura->getNumRows() - 1, 4 - vida);
+	textura->renderFrame(rect, textura->getNumRows() - 1, maxVida - vida);
 }
 
  bool Bunker::Hit(const SDL_Rect* r, bool o)

@@ -64,10 +64,10 @@ void Cannon::HandleEvent(const SDL_Event& evento)
 	if (SDL_KEYDOWN == evento.type) {
 
 		//Se mueve hacia la izquierda
-		if (SDLK_LEFT == evento.key.keysym.sym) { dirC = 1; }
+		if (SDLK_LEFT == evento.key.keysym.sym) { dirC = izquierda; }
 
 		//Se mueve hacia la derecha
-		else if (SDLK_RIGHT == evento.key.keysym.sym) { dirC = 2; }
+		else if (SDLK_RIGHT == evento.key.keysym.sym) { dirC = derecha; }
 
 		//Disparamos si se pulsa el espacio y ha pasado el tiempo de enfriamiento
 		else if (SDLK_SPACE == evento.key.keysym.sym && cooldown == maxCooldown) {
