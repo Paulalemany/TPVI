@@ -25,7 +25,7 @@ public:
 
 	void Update() override;
 
-	void save(std::ostream& out) const;
+	void save(std::ostream& out) const override;
 
 };
 
