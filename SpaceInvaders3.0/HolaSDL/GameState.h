@@ -6,6 +6,7 @@
 #include "gameList.h"
 #include "EventHandler.h"
 #include "GameObject.h"
+#include "checkML.h"
 
 //Declaraciones anticipadas
 class GameObject;

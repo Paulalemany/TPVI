@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneObject.h"
+#include "checkML.h"
 
 class Bomb: public SceneObject
 {

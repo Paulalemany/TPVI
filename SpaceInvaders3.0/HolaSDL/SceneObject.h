@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "texture.h"
+#include "checkML.h"
 
 class PlayState;
 class SceneObject: public GameObject
