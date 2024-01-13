@@ -38,8 +38,5 @@ public:
 	//Metodos para añadir 
 	virtual void AddEventListener(EventHandler* lis);
 	void AddObject(GameObject* obj);
-
-	//Getter del ID del estado en el que esté
-	virtual std::string GetStateID() const = 0;
 };
 

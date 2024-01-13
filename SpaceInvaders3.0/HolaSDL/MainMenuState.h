@@ -33,8 +33,6 @@ public:
 
 	bool OnEnter() override;
 	bool OnExit() override;
-
-	virtual std::string GetStateID() const { return _menuID; }
 };
 
 
