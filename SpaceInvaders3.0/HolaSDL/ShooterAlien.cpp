@@ -16,5 +16,5 @@ void ShooterAlien::save(std::ostream& out) const
 {
 	out << "2 ";
 	SceneObject::save(out);
-	out << " " << indice << " " << coolDown << endl;
+	out << " " << indice << " " << coolDown << std::endl;
 }

@@ -67,7 +67,7 @@ SDLApplication::SDLApplication()
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (window == nullptr || renderer == nullptr)
-			throw "Error cargando SDL"s;
+			//throw "Error cargando SDL"s;
 
 	//Quitar este catch y capturarlo en el main
 	/*catch (...) {
@@ -98,13 +98,13 @@ SDLApplication::SDLApplication()
 void SDLApplication::Texturas()
 {
 	//Raiz común de todas las texturas
-	string textureRoot = "..\\images\\";
-	string objectRoot = "..\\objetos\\";
-	string textura;
+	std::string textureRoot = "..\\images\\";
+	std::string objectRoot = "..\\objetos\\";
+	std::string textura;
 
 	//Struct con los datos de cada imagen a texturizar
 	struct Imagen {
-		string nombre;
+		std::string nombre;
 		int filas;
 		int columnas;
 	};
@@ -129,7 +129,7 @@ void SDLApplication::Texturas()
 	Imagen _S_Reward{ objectRoot + "shield_reward.png", 1, 1 };
 
 	//Creamos un array que contenga todas las imagenes (Para poder automatizarlo)
-	array <Imagen, NUM_TEXTURES> Imagenes;
+	std::array <Imagen, NUM_TEXTURES> Imagenes;
 	Imagenes[FONDOMENU] = _FondoMenu;
 	Imagenes[FONDOJUEGO] = _FondoJuego;
 	Imagenes[NAVE] = _Nave;

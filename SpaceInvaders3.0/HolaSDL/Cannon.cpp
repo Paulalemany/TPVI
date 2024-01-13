@@ -24,7 +24,7 @@ void Cannon::save(std::ostream& out) const
 {
 	out << "0 ";
 	SceneObject::save(out);
-	out << " " << vida << " " << cooldown << endl;
+	out << " " << vida << " " << cooldown << std::endl;
 }
 
 //Si el disparo es de un alien y colisionan
@@ -44,7 +44,7 @@ bool Cannon::Hit(const SDL_Rect* r, bool o) {
 		else {
 			//La invencibilidad dura un golpe
 			invencible = false;
-			cout << "No invencible";
+			std::cout << "No invencible";
 		}
 		return true;
 	}

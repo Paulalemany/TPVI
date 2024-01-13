@@ -1,7 +1,7 @@
 #include "MainMenuState.h"
 #include "Button.h"
 
-const string MenuState::_menuID = "MENU";
+const std::string MenuState::_menuID = "MENU";
 
 void MenuState::Play()
 {
@@ -13,17 +13,17 @@ void MenuState::Play()
 void MenuState::Load()
 {
 	//Llama al método de change State para cambiar a playState pero tiene que cargar una partida nueva
-	cout << "Escriba el numero de partida que desea cargar: " << endl;
+	std::cout << "Escriba el numero de partida que desea cargar: " << std::endl;
 
 	int k;
-	cin >> k;
+	std::cin >> k;
 	if (k >= 0) {
-		string fileName = "..\\mapas\\saved" + to_string(k) + ".txt";
+		std::string fileName = "..\\mapas\\saved" + std::to_string(k) + ".txt";
 		game->ChangeState(1);
 		game->GetMachine()->ReplaceState(new PlayState(game, fileName));
 	}
 	else {
-		cout << "El caracter no es válido, se reaunuda la partida" << endl;
+		std::cout << "El caracter no es válido, se reaunuda la partida" << std::endl;
 	}
 	
 }
@@ -70,13 +70,13 @@ void MenuState::Render()
 
 bool MenuState::OnEnter()
 {
-	cout << "Entrando al MenuState" << endl;
+	std::cout << "Entrando al MenuState" << std::endl;
 	return true;
 }
 
 bool MenuState::OnExit()
 {
-	cout << "Saliendo del MenuState" << endl;
+	std::cout << "Saliendo del MenuState" << std::endl;
 	return true;
 }
 

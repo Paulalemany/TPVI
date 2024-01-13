@@ -59,7 +59,7 @@ private:
 	//Texturas
 	static const int NUM_TEXTURES = 9;											//Numero de texturas usadas en el juego
 	
-	array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
+	std::array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 
 	//Booleano de salida
 	bool exit = false;

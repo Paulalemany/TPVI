@@ -49,7 +49,7 @@ void Alien::save(std::ostream& out) const
 {
 	out << "1 ";
 	SceneObject::save(out);
-	out << " " << indice << endl;;
+	out << " " << indice << std::endl;;
 }
 
 //Controla la colision

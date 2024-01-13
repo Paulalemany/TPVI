@@ -25,5 +25,5 @@ void Bunker::save(std::ostream& out) const
 {
 	out << "4 ";
 	SceneObject::save(out);
-	out << " " << vida << endl;
+	out << " " << vida << std::endl;
 }

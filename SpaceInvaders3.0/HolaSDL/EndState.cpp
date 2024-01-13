@@ -1,6 +1,6 @@
 #include "EndState.h"
 
-const string EndState::_endID = "END";
+const std::string EndState::_endID = "END";
 
 EndState::EndState(SDLApplication* game)
 	: GameState(game)
@@ -15,12 +15,12 @@ void EndState::Render()
 
 bool EndState::OnEnter()
 {
-	cout << "Entrando al EndState" << endl;
+	std::cout << "Entrando al EndState" << std::endl;
 	return true;
 }
 
 bool EndState::OnExit()
 {
-	cout << "Saliendo del EndState" << endl;
+	std::cout << "Saliendo del EndState" << std::endl;
 	return true;
 }

@@ -1,40 +1,40 @@
 #include "PauseState.h"
 #include "Button.h"
 
-const string PauseState::_pauseID = "PAUSE";
+const std::string PauseState::_pauseID = "PAUSE";
 
 void PauseState::Save()
 {
 	//Guarda la partida actual
-	cout << "Ingrese el numero de la partida: " << endl;
+	std::cout << "Ingrese el numero de la partida: " << std::endl;
 
 	//Si se escribe algo distinto a un int, lanzar una excepción
 	int k;
-	cin >> k;
+	std::cin >> k;
 
 	//Ahora mismo si le pone un character distinto a un int lo guarda como 0
-	string fileName = "saved" + to_string(k) + ".txt";
+	std::string fileName = "saved" + std::to_string(k) + ".txt";
 
 	_playState->Save(fileName);
 
-	cout << "Su partida se ha guardado con el nombre " << fileName << endl;
+	std::cout << "Su partida se ha guardado con el nombre " << fileName << std::endl;
 	
 }
 
 void PauseState::Load()
 {
 	//Llama al método de change State para cambiar a playState pero tiene que cargar una partida nueva
-	cout << "Escriba el numero de partida que desea cargar: " << endl;
+	std::cout << "Escriba el numero de partida que desea cargar: " << std::endl;
 
 	int k;
-	cin >> k;
+	std::cin >> k;
 	if (k >= 0) {
-		string fileName = "..\\mapas\\saved" + to_string(k) + ".txt";
+		std::string fileName = "..\\mapas\\saved" + std::to_string(k) + ".txt";
 		game->ChangeState(1);
 		game->GetMachine()->ReplaceState(new PlayState(game, fileName));
 	}
 	else {
-		cout << "El caracter no es válido, se reaunuda la partida" << endl;
+		std::cout << "El caracter no es válido, se reaunuda la partida" << std::endl;
 	}
 }
 
@@ -86,13 +86,13 @@ void PauseState::Render()
 
 bool PauseState::OnEnter()
 {
-	cout << "Entrando al PauseState" << endl;
+	std::cout << "Entrando al PauseState" << std::endl;
 	return true;
 }
 
 bool PauseState::OnExit()
 {
-	cout << "Saliendo del PauseState" << endl;
+	std::cout << "Saliendo del PauseState" << std::endl;
 	return true;
 }
 

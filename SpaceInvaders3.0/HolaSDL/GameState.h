@@ -7,8 +7,7 @@
 #include "EventHandler.h"
 #include "GameObject.h"
 
-using namespace std;
-
+//Declaraciones anticipadas
 class GameObject;
 class SDLApplication;
 class GameState
@@ -16,7 +15,7 @@ class GameState
 protected:
 	SDLApplication* game;						//Puntero al juego
 	GameList<GameObject, true> gameList;		//Lista de objetos del juego
-	list<EventHandler*> listenerList;			//Manejadores de eventos
+	std::list<EventHandler*> listenerList;			//Manejadores de eventos
 
 public:
 	//Destructora

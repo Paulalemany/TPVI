@@ -1,7 +1,7 @@
 #pragma once
 #include "Alien.h"
 
-class SDLApplication;
+class SDLApplication;		//Declaración anticipada
 class ShooterAlien: public Alien
 {
 private:

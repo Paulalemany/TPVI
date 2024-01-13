@@ -14,7 +14,7 @@ private:
 	double v = 5;						//Velocidad del objeto al caer
 
 	//Lista de funciones para el callback
-	list<callBack> Objectscallbacks;
+	std::list<callBack> Objectscallbacks;
 
 	//Evento emitido por el objeto
 	void emit() const;

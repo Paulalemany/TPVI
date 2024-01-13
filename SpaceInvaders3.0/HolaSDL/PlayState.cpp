@@ -1,6 +1,6 @@
 #include "PlayState.h"
 
-const string PlayState::_playID = "PLAY";
+const std::string PlayState::_playID = "PLAY";
 
 void PlayState::Update()
 {
@@ -26,7 +26,7 @@ void PlayState::Render()
 	}
 }
 
-void PlayState::Mapas(string file)
+void PlayState::Mapas(std::string file)
 {
 #pragma region Incio
 
@@ -41,7 +41,7 @@ void PlayState::Mapas(string file)
 #pragma endregion
 
 	//Abrimos el archivo a leer
-	ifstream Mapa(file);
+	std::ifstream Mapa(file);
 
 	//Si no encuentra el archivo lanzamos una excepción
 	if (Mapa.fail()) {
@@ -118,10 +118,10 @@ void PlayState::Mapas(string file)
 	Mapa.close();
 }
 
-void PlayState::Save(const string& saveFileName) const
+void PlayState::Save(const std::string& saveFileName) const
 {
 	//Creamos un archivo donde vayamos a guardar los datos
-	ofstream save(guardadoRoot + saveFileName);
+	std::ofstream save(guardadoRoot + saveFileName);
 	//si no se encuentra el archivo
 	if (save.fail())
 		//throw FileNotFoundError("No se puede leer el archivo llamado"s + saveFileName);
@@ -135,14 +135,14 @@ void PlayState::Save(const string& saveFileName) const
 	}
 
 	//Guardamos los puntos
-	save << "7 " << ScorePlayer << endl;
+	save << "7 " << ScorePlayer << std::endl;
 
 	save.close();
 }
 
 int PlayState::getRandomRange(int min, int max)
 {
-	return uniform_int_distribution<int>(min, max)(randomGenerator);
+	return std::uniform_int_distribution<int>(min, max)(randomGenerator);
 }
 
 void PlayState::HandleEvent(const SDL_Event& event)
@@ -162,7 +162,7 @@ void PlayState::SetScore(int s)
 	ScorePlayer += s;
 
 	//Hacemos que escriban los puntos en consola
-	cout << "Score: " << ScorePlayer << endl;
+	std::cout << "Score: " << ScorePlayer << std::endl;
 }
 
 void PlayState::FireLaser(Point2D<double> p, bool origen)
@@ -190,7 +190,7 @@ void PlayState::hasDied(GameList<SceneObject, true>::anchor i)
 void PlayState::isGameOver()
 {
 	gameOver = true;
-	cout << "Has perdido :(";
+	std::cout << "Has perdido :(";
 	game->ChangeState(0);
 	game->GetMachine()->ReplaceState(new MenuState(game));
 }
@@ -198,7 +198,7 @@ void PlayState::isGameOver()
 void PlayState::YouWin()
 {
 	gameOver = true;
-	cout << "Has ganado!!! :D";
+	std::cout << "Has ganado!!! :D";
 	game->ChangeState(0);
 	game->GetMachine()->ReplaceState(new MenuState(game));
 }
@@ -222,7 +222,7 @@ void PlayState::DropReward(Point2D<double> pos)
 
 void PlayState::ShieldReward()
 {
-	cout << "Invencibleeee";
+	std::cout << "Invencibleeee";
 	nave->ImInvencible();
 }
 
@@ -236,13 +236,13 @@ void PlayState::FireBomb(Point2D<double> pos)
 
 bool PlayState::OnEnter()
 {
-	cout << "Entrando en PlayState" << endl;
+	std::cout << "Entrando en PlayState" << std::endl;
 	return true;
 }
 
 bool PlayState::OnExit()
 {
-	cout << "Saliendo de PlayState" << endl;
+	std::cout << "Saliendo de PlayState" << std::endl;
 	
 	return true;
 }

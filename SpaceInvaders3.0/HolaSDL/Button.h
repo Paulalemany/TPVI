@@ -32,7 +32,7 @@ private:
 	enum ButtonState { MouseOut, MouseOver, MouseClick };
 
 	//Callback para las funciones que se tengan que hacer al ser pulsado
-	list<callBack> callbacks;
+	std::list<callBack> callbacks;
 
 	//Hay un método privado porque el único que debe ser capaz de emitir el evento de botón pulsado es el propio botón
 	void emit() const;

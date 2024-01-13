@@ -7,7 +7,7 @@ class GameStateMachine
 private:
 
 	//Usamos una pila para almacenar los estados
-	stack <GameState*> _pilaGameStates;
+	std::stack <GameState*> _pilaGameStates;
 
 public:
 	//Destructora

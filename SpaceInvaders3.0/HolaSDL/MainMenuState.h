@@ -2,7 +2,7 @@
 #include "GameState.h"
 
 
-class Button;
+class Button;		//Declaración anticipada
 //Todos los estados heredan de la clase base "GameState"
 class MenuState : public GameState
 {

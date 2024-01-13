@@ -24,10 +24,10 @@ private:
 	static const std::string _playID;					//ID del PlayState
 
 	//Lectura de archivos
-	const string mapa = "..\\mapas\\original.txt",		//Ruta del mapa a utilizar
+	const std::string mapa = "..\\mapas\\original.txt",		//Ruta del mapa a utilizar
 				 guardadoRoot = "..\\mapas\\";			//Ruta de partida guardada
 
-	string savedCode = " ";								//Código de la partida guardada
+	std::string savedCode = " ";								//Código de la partida guardada
 
 	//Booleanos del juego
 	bool gameOver = false;
@@ -53,12 +53,12 @@ private:
 	//Creamos el canon
 	Cannon* nave;
 
-	mt19937_64 randomGenerator;							//Semilla del random
+	std::mt19937_64 randomGenerator;							//Semilla del random
 
 public:
 
 	//Constructora
-	PlayState(SDLApplication* g, string file): GameState(g) 
+	PlayState(SDLApplication* g, std::string file): GameState(g)
 	{
 		mothership = new MotherShip(game, this);
 		Mapas(file);
@@ -69,9 +69,9 @@ public:
 	
 #pragma region Inicialización
 
-	void Mapas(string file);
+	void Mapas(std::string file);
 
-	void Save(const string& saveFileName) const;
+	void Save(const std::string& saveFileName) const;
 
 	// genera un int aleatorio con un minimo y un maximo
 	int getRandomRange(int min, int max);
