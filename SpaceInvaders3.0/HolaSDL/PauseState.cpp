@@ -54,11 +54,11 @@ PauseState::PauseState(SDLApplication* game, PlayState* p)
 	: GameState(game)
 {
 	_playState = p;
-
-	_saveButton = new Button(game, this, game->GetRenderer(), Point2D<double>(lineaB, lineaI));
-	_loadButton = new Button(game, this, game->GetRenderer(), Point2D<double>(lineaA, lineaI));
-	_homeButton = new Button(game, this, game->GetRenderer(), Point2D<double>(lineaB, lineaD));
-	_returnButton = new Button(game, this, game->GetRenderer(), Point2D<double>(lineaA, lineaD));
+	
+	_saveButton = new Button(game, this, game->GetTexture(GUARDARPARTIDA), game->GetRenderer(), Point2D<double>(columna, fila));
+	_loadButton = new Button(game, this, game->GetTexture(CARGARPARTIDA), game->GetRenderer(), Point2D<double>(columna, fila + margen));
+	_homeButton = new Button(game, this, game->GetTexture(VOLVERALMENU), game->GetRenderer(), Point2D<double>(columna, fila + margen * 2));
+	_returnButton = new Button(game, this, game->GetTexture(CONTINUAR), game->GetRenderer(), Point2D<double>(columna, fila + margen * 3));
 
 	AddObject(_saveButton);
 	AddObject(_loadButton);

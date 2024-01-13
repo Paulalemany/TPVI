@@ -11,18 +11,17 @@ void Button::emit() const
 
 void Button::Render() const
 {
+	//renderizamos el botón
+	textura->renderFrame(Rect, textura->getNumRows() - 1, textura->getNumColumns() - 1);
+
 	//Dependiendo del estado del ratón lo ponemos de un color u otro
-	if (currentFrame == MouseOut) {
+	if (currentFrame == MouseOver) {
 		SDL_SetRenderDrawColor(renderer, 255, 255, 0, opacidad);	//Amarillo clarito
-	}
-	else {
-		SDL_SetRenderDrawColor(renderer, 255, 215, 0, opacidad);	//Amarillo oscuro
+		//dibujamos el boton
+		SDL_RenderFillRect(renderer, &Rect);
 	}
 
-	//dibujamos el boton
-	SDL_RenderFillRect(renderer, &Rect);
-
-	// Restablece el color de fondo (para el SDL_RenderClear)
+	//Restablece el color de fondo (para el SDL_RenderClear)
 	SDL_SetRenderDrawColor(game->GetRenderer(), 0, 0, 0, opacidad);
 }
 

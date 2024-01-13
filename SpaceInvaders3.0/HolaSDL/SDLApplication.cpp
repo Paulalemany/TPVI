@@ -67,13 +67,8 @@ SDLApplication::SDLApplication()
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 		if (window == nullptr || renderer == nullptr)
-			//throw "Error cargando SDL"s;
+			throw "Error cargando SDL";
 
-	//Quitar este catch y capturarlo en el main
-	/*catch (...) {
-		cerr << "No se ha podido crear la ventana SDL" << endl;
-		exit = true;
-	}*/
 	if (!exit) {
 
 		//Cargamos todo el estado inicial del juego
@@ -100,6 +95,7 @@ void SDLApplication::Texturas()
 	//Raiz común de todas las texturas
 	std::string textureRoot = "..\\images\\";
 	std::string objectRoot = "..\\objetos\\";
+	std::string textRoot = "..\\textos\\";
 	std::string textura;
 
 	//Struct con los datos de cada imagen a texturizar
@@ -110,28 +106,36 @@ void SDLApplication::Texturas()
 	};
 
 	//Imagenes a texturizar
+	//FONDOS
 	Imagen _FondoMenu{ "..\\fondos\\mainMenu.png", 1, 1 };
-
 	Imagen _FondoJuego{ textureRoot + "stars.png", 1, 1 };
 
+	//OBJETOS
 	Imagen _Nave{ textureRoot + "spaceship.png", 1, 1 };
-
 	Imagen _Bunker{ textureRoot + "bunker.png", 1, 4 };
-
 	Imagen _Alien{ textureRoot + "aliens.png", 3, 2 };
-
 	Imagen _Ufo{ textureRoot + "ufo.png", 1, 2 };
-
 	Imagen _Bomb{ objectRoot + "bomb.png", 1, 1 };
-
 	Imagen _Shield{ objectRoot + "shield.png", 1, 1 };
-
 	Imagen _S_Reward{ objectRoot + "shield_reward.png", 1, 1 };
+
+	//TEXTOS
+	Imagen _CargarPartida{ textRoot + "cargarPartida.png", 1, 1 };
+	Imagen _Codigo{ textRoot + "codigo.png", 1, 1 };
+	Imagen _Continuar{ textRoot + "continuar.png", 1, 1 };
+	Imagen _GameOver{ textRoot + "gameOver.png", 1, 1 };
+	Imagen _GuardarPartida{ textRoot + "guardarPartida.png", 1, 1 };
+	Imagen _HasGanado{ textRoot + "hasGanado.png", 1, 1 };
+	Imagen _NuevaPartida{ textRoot + "nuevaPartida.png", 1, 1 };
+	Imagen _Salir{ textRoot + "salir.png", 1, 1 };
+	Imagen _VolverAlMenu{ textRoot + "volverAlMenu.png", 1, 1 };
 
 	//Creamos un array que contenga todas las imagenes (Para poder automatizarlo)
 	std::array <Imagen, NUM_TEXTURES> Imagenes;
+	//Fondos
 	Imagenes[FONDOMENU] = _FondoMenu;
 	Imagenes[FONDOJUEGO] = _FondoJuego;
+	//Objetos
 	Imagenes[NAVE] = _Nave;
 	Imagenes[BUNKERS] = _Bunker;
 	Imagenes[ALIENS] = _Alien;
@@ -139,6 +143,16 @@ void SDLApplication::Texturas()
 	Imagenes[BOMB] = _Bomb;
 	Imagenes[SHIELD] = _Shield;
 	Imagenes[S_REWARD] = _S_Reward;
+	//Textos
+	Imagenes[CARGARPARTIDA] = _CargarPartida;
+	Imagenes[CODIGO] = _Codigo;
+	Imagenes[CONTINUAR] = _Continuar;
+	Imagenes[GAMEOVER] = _GameOver;
+	Imagenes[GUARDARPARTIDA] = _GuardarPartida;
+	Imagenes[HASGANADO] = _HasGanado;
+	Imagenes[NUEVAPARTIDA] = _NuevaPartida;
+	Imagenes[SALIR] = _Salir;
+	Imagenes[VOLVERALMENU] = _VolverAlMenu;
 
 	//Hacemos un array con las texturas
 	for (int i = 0; i < NUM_TEXTURES; i++) {
@@ -163,73 +177,9 @@ void SDLApplication::HandleEvents()
 	SDL_Event evento;
 
 	while (SDL_PollEvent(&evento) && !exit) {
-		if (evento.type == SDL_QUIT) {
-
-			exit = true;
-		}
-		else {
-			_gameStateMachine->HandleEvent(evento);
-		}
+		if (evento.type == SDL_QUIT) { exit = true; }
+		else { _gameStateMachine->HandleEvent(evento); }
 	}
-	
-//	//Mientras exista el evento y estemos jugando
-//	while (SDL_PollEvent(&evento) && !exit) {
-//
-//		//Para no escribir todo el tiempo lo mismo
-//		SDL_Keycode key = evento.key.keysym.sym;
-//
-//		//Para poder cerrar la propia ventana SDL
-//		if (evento.type == SDL_QUIT) exit = true;
-//
-//		//Probamos para cambiar de estado
-//		else if (evento.type == SDL_KEYDOWN && key == SDLK_t) {
-//			//Se cambia de estado :)
-//			_gameStateMachine->ReplaceState(new PlayState());
-//			_state = PLAY;
-//		}
-//		//Para cargar y guardar partida
-//		else if (evento.type == SDL_KEYDOWN && (key == SDLK_s || key == SDLK_l)) {
-//			//Diferenciamos el guardar y cargar
-//			if (SDLK_s == key) {
-//
-//				//Guarda la partida actual
-//				cout << "Ingrese el numero de la partida: " << endl;
-//
-//				////Si se escribe algo distinto a un int, lanzar una excepción
-//				//int k;
-//				//cin >> k;
-//
-//				////Ahora mismo si le pone un character distinto a un int lo guarda como 0
-//				//string fileName = "saved" + to_string(k) + ".txt";
-//				////Save(fileName);
-//
-//				cout << "Su partida se ha guardado con el nombre " 
-//					//<< fileName 
-//					<< endl;
-//
-//			}
-//			else if (key == SDLK_l) {
-//				//Carga una partida nueva
-//
-//				cout << "Escriba el número de partida que desea cargar: " << endl;
-//
-//				int k;
-//				cin >> k;
-//				if (k >= 0) {
-//					string fileName = guardadoRoot + "saved" + to_string(k) + ".txt";
-//					objects.clear();
-//					objectToErase.clear();
-//					Mapas(fileName);
-//				}
-//				else {
-//					cout << "El caracter no es válido, se reaunuda la partida" << endl;
-//				}*/
-//
-//			}
-//		}
-//		else { //canon->HandleEvent(evento); 
-//		}
-//	}
 
 }
 

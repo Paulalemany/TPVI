@@ -16,7 +16,9 @@ private:
 	Button* _exitButton;
 
 	//Posición botones
-	const int columna = 240;
+	const int columna = 250,
+		fila = 150,
+		margen = 50;
 
 	//Callbacks para los botones
 	void Play();

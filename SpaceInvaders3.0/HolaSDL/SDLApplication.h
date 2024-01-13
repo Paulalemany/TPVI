@@ -18,7 +18,10 @@
 #include "SDLError.h"
 #include "FileFormatError.h" 
 
-enum textures { FONDOMENU, FONDOJUEGO, NAVE, BUNKERS, ALIENS, UFO, BOMB, SHIELD, S_REWARD };			//Enum de texturas
+enum textures { FONDOMENU, FONDOJUEGO, 
+	NAVE, BUNKERS, ALIENS, UFO, BOMB, SHIELD, S_REWARD,
+	CARGARPARTIDA, CODIGO, CONTINUAR, GAMEOVER, GUARDARPARTIDA, HASGANADO, NUEVAPARTIDA, SALIR, VOLVERALMENU
+}; //Enum de texturas
 
 class SDLApplication
 {
@@ -58,7 +61,7 @@ private:
 #pragma endregion
 
 	//Texturas
-	static const int NUM_TEXTURES = 9;											//Numero de texturas usadas en el juego
+	static const int NUM_TEXTURES = 18;											//Numero de texturas usadas en el juego
 	
 	std::array <Texture*, NUM_TEXTURES> texturas;									//Array de texturas
 

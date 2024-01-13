@@ -38,9 +38,9 @@ MenuState::MenuState(SDLApplication* g) : GameState(g)
 {
 	//Creamos los diferentes botones
 	//Podría crear constantes pero no lo uso tanto como para volverlo una constante creo
-	_playButton = new Button(game, this, game->GetRenderer(), Point2D<double>(310, 150));
-	_loadButton = new Button(game, this, game->GetRenderer(), Point2D<double>(200, columna));
-	_exitButton = new Button(game, this, game->GetRenderer(), Point2D<double>(420, columna));
+	_playButton = new Button(game, this,game->GetTexture(NUEVAPARTIDA), game->GetRenderer(), Point2D<double>(columna, fila));
+	_loadButton = new Button(game, this,game->GetTexture(CARGARPARTIDA), game->GetRenderer(), Point2D<double>(columna, fila + margen));
+	_exitButton = new Button(game, this,game->GetTexture(SALIR), game->GetRenderer(), Point2D<double>(columna, fila + margen * 2));
 
 	//Añadimos los botones a la lista de objetos
 	//(por ahora solo usaremos el playButton por lo aue voy a comentar el resto)

@@ -17,11 +17,9 @@ private:
 	Button* _returnButton;						//Para reanudar la partida
 
 	//Posiciones
-
-	const int lineaA = 125,
-		lineaB = 500,
-		lineaI = 150,
-		lineaD = 240;
+	const int columna = 200,
+		fila = 125,
+		margen = 100;
 	
 	//callback del boton
 	void Save();

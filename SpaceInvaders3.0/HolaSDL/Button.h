@@ -18,13 +18,12 @@ private:
 	//Datos del raton
 	int x, y;							//Posición del ratón
 	SDL_Point point;					//Posición del ratón al pulsar
-	//Utiliza un Point2D para la pos
+
+	Texture* textura = nullptr;			//Puntero a la textura
 
 	//Dibujo del boton
-	SDL_Renderer* renderer = nullptr;	//Puntero al renderer
-	const int buttonW = 175;			//Ancho del boton
-	const int buttonH = 50;				//largo del boton
 	const int opacidad = 255;			//Opacidad completa
+	SDL_Renderer* renderer = nullptr;
 	SDL_Rect Rect;						//Rect del boton
 
 	//Animación del boton
@@ -41,18 +40,17 @@ public:
 
 	//Constructora
 	//GameState para el game object??
-	Button(SDLApplication* a, GameState* g, SDL_Renderer* r, Vector2D<double> pos )
+	Button(SDLApplication* a, GameState* g, Texture* t, SDL_Renderer* r, Vector2D<double> pos )
 	: GameObject(a, g)
 	{
-
+		textura = t;
 		renderer = r;
-
 		Rect.x = pos.LeerPosX();
 		Rect.y = pos.LeerPosY();
 
 		//Dimensiones del botón
-		Rect.w = buttonW;
-		Rect.h = buttonH;
+		Rect.w = textura->getFrameWidth();
+		Rect.h = textura->getFrameHeight();
 
 		//Inicializamos el estado del raton como fuera dek botón
 		currentFrame = MouseOut;
