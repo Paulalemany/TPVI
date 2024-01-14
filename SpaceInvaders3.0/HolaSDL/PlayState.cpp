@@ -191,16 +191,18 @@ void PlayState::isGameOver()
 {
 	gameOver = true;
 	std::cout << "Has perdido :(";
-	game->ChangeState(0);
-	game->GetMachine()->ReplaceState(new MenuState(game));
+	//game->ChangeState(0);
+	//game->GetMachine()->ReplaceState(new MenuState(game));
+	game->GetMachine()->ReplaceState(new EndState(game, game->GetTexture(GAMEOVER)));
 }
 
 void PlayState::YouWin()
 {
 	gameOver = true;
 	std::cout << "Has ganado!!! :D";
-	game->ChangeState(0);
-	game->GetMachine()->ReplaceState(new MenuState(game));
+	//game->ChangeState(0);
+	//game->GetMachine()->ReplaceState(new MenuState(game));
+	game->GetMachine()->ReplaceState(new EndState(game, game->GetTexture(HASGANADO)));
 }
 
 bool PlayState::MayGrantReward(SDL_Rect r) const
